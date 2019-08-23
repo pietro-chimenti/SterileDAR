@@ -2,6 +2,6 @@ from SterileDar import OscillationModel
 
 model = OscillationModel()
 
-print("Model: ", model.Pee())
+print("Model: ", model.Pee(2,0.2))
 
 print("Hello SterileDAR!")
