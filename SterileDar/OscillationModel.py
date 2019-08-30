@@ -1,16 +1,24 @@
-import math
+import numpy as np 
 
 class OscillationModel:
     """ This class bla bla """
 
-    DelM2 = 1.0
-    Ue4   = 0.2
-    Umu4  = 0.3
+    DelM2 = 1.7
+    Ue4_2   = 0.019
+    Umu4_2  = 0.015
 
     
     def __init__(self, *args, **kwargs):
         # you can add additional code here if needed
-        print("OScillation Model Contructor")
+        pass
 
     def Pee(self,L,E):
-        return 1.-4.*(1-self.Ue4**2)*(self.Ue4**2)*((math.sin(1.27*self.DelM2*L/E))**2)
+        return 1.-4.*(1-self.Ue4_2)*(self.Ue4_2)*((np.sin(1.27*self.DelM2*L/E))**2)
+
+    def Pmm(self,L,E):
+        return 1.-4.*(1-self.Umu4_2)*(self.Umu4_2)*((np.sin(1.27*self.DelM2*L/E))**2)
+
+    def Pme(self,L,E):
+        return 4.*(self.Umu4_2)*(self.Ue4_2)*((np.sin(1.27*self.DelM2*L/E))**2)
+
+
