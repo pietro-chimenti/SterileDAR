@@ -1,15 +1,17 @@
+print("Gráfico da probabilidade de oscilação do neutrino do muon para o neutrino do elétron a energia fixa")
+
 import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-DelM2 = 1.0
-Ue4   = 0.2
-Umu4  = 0.3
+DelM2 = 1.7
+Ue4   = 0.019
+Umu4  = 0.015
 
 def Pee(x,y):
-	return 1.-(4.*(1-Ue4**2)*(Ue4**2)*((np.sin((1.27)*(DelM2)*(x/y)))**2))
-        
-L = np.arange(50)
+	return 4.*(Ue4)*(Umu4)*(np.sin((1.27)*(DelM2)*(x/y)))**2
+
+L = np.arange(10000)
 
 E = float(input('Digite um valor fixo para a energia: '))
 
