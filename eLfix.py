@@ -1,26 +1,24 @@
-print("Gráfico da probabilidade de sobrevivência do neutrino do elétron para distância fixa")
+# coding=utf-8
 
+from SterileDar import OscillationModel
 import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-DelM2 = 1.7
-Ue4   = 0.019
-Umu4  = 0.015
+print("Gráfico da probabilidade de sobrevivência do neutrino do elétron para distância fixa")
 
-def Pee(x,y):
-	return 1.-(4.*(1-Ue4)*(Ue4)*((np.sin((1.27)*(DelM2)*(x/y)))**2))
+model = OscillationModel.OscillationModel()
 
-E = np.arange(0.00000000000000000000000000000001,5000.0)
+E = np.arange(10e-15,100.0,0.01)
 
 L = float(input('Digite um valor fixo para a distância: '))
 
-plt.plot(E,Pee(L,E))
-
+plt.plot(E,model.Pee(L,E))
+plt.title('Sobrevivência do neutrino do elétron para L={0}m'.format(L))
 plt.grid(True)
-plt.xlabel("Energia")
-plt.ylabel("Probabilidade de sobrevivência")
-
+plt.xlabel(u"Energia [MeV]")
+plt.ylabel(u"Probabilidade de sobrevivência")
+#plt.savefig('eLfix.pdf')
 plt.show()
 
 
