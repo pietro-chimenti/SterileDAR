@@ -1,25 +1,24 @@
+#coding=utf-8
+
 print("Gráfico da probabilidade de sobrevivência do neutrino do muon para distância fixa")
 
 import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-DelM2 = 1.7
-Ue4   = 0.019
-Umu4  = 0.015
+from SterileDar import OscillationModel
 
-def Pee(x,y):
-	return 1.-(4.*(1-Umu4)*(Umu4)*((np.sin((1.27)*(DelM2)*(x/y)))**2))
+model = OscillationModel.OscillationModel()
 
-E = np.arange(0.00000000000000000000000000000001,5000.0)
+E = np.arange(10e-15,100.0,0.01)
 
 L = float(input('Digite um valor fixo para a distância: '))
 
-plt.plot(E,Pee(L,E))
-
+plt.plot(E,model.Pmm(L,E))
+plt.title('Sobrevivência do neutrino do muon para L={0}m'.format(L))
 plt.grid(True)
-plt.xlabel("Energia")
+plt.xlabel("Energia [MeV]")
 plt.ylabel("Probabilidade de sobrevivência")
-
+#plt.savefig('uLfix.pdf')
 plt.show()
 
