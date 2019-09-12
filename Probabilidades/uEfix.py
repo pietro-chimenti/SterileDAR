@@ -1,7 +1,8 @@
 #coding=utf-8
 
 print("Gráfico da probabilidade de sobrevivência do neutrino do muon para energia fixa")
-
+import sys
+sys.path.append("..")
 from SterileDar import OscillationModel
 import matplotlib.pyplot as plt
 import numpy as np

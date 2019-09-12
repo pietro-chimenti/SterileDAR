@@ -1,17 +1,18 @@
 # coding=utf-8
-
-from SterileDar import OscillationModel
+import sys
+sys.path.append("..")
+from SterileDar import Spectra
 import matplotlib.pyplot as plt
 import numpy as np
 import math
 
 print("Gráfico do espectro dos antineutrinos do muon emitidos no decaimento em repouso do pion+")
 
-model = OscillationModel.OscillationModel()
+spc = Spectra.Spectra()
 
 E = np.arange(0,52.85,0.01)
 
-plt.plot(E,model.dGdEvam(E))
+plt.plot(E,spc.dGdEvmbar(E))
 plt.title(u'Espectro dos antineutrinos do muon')
 plt.grid(True)
 plt.xlabel(u"Energia dos antineutrinos [MeV]")

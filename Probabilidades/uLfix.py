@@ -1,7 +1,8 @@
 #coding=utf-8
 
 print("Gráfico da probabilidade de sobrevivência do neutrino do muon para distância fixa")
-
+import sys
+sys.path.append("..")
 import matplotlib.pyplot as plt
 import numpy as np
 import math

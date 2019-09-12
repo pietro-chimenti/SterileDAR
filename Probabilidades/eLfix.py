@@ -1,5 +1,6 @@
 # coding=utf-8
-
+import sys
+sys.path.append("..")
 from SterileDar import OscillationModel
 import matplotlib.pyplot as plt
 import numpy as np

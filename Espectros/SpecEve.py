@@ -1,17 +1,18 @@
 # coding=utf-8
-
-from SterileDar import OscillationModel
+import sys
+sys.path.append("..")
+from SterileDar import Spectra
 import matplotlib.pyplot as plt
 import numpy as np
 import math
 
 print("Gráfico do espectro dos neutrinos emitidos no DAR do pion+")
 
-model = OscillationModel.OscillationModel()
+spc = Spectra.Spectra()
 
 E = np.arange(0,52.85,0.01)
 
-plt.plot(E,model.dGdEve(E))
+plt.plot(E,spc.dGdEve(E))
 plt.title(u'Espectro dos neutrinos emitidos')
 plt.grid(True)
 plt.xlabel(u"Energia dos neutrinos [MeV]")
