@@ -1,4 +1,4 @@
-from SterileDar import OscillationModel
+from SterileDar.OscillationModel import OscillationModel
 
 model = OscillationModel()
 
