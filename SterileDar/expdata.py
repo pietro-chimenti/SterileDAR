@@ -10,10 +10,10 @@ class expdata:
 	dlab = 863*10e3	#g/m³
 	mmppo = 221.25	#g/mol
 	dppo = 1.1*10e6	#g/m³
-	r = 4	#m
-	h = 20.5	#m
+	r = (3.2)/2	#m (JSNS2)
+	h = 2.5	#m (JSNS2)
 
-	vtotal=4*(math.pi)*(r**2)*h
+	vtotal=(math.pi)*(r**2)*h
 
 	mol=6.02*10e23
 
@@ -46,4 +46,3 @@ class expdata:
 	nitrogeniototal=1*moleculappo
 
 	oxigeniototal=1*moleculappo
-
