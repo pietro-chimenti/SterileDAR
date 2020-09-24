@@ -1,3 +1,4 @@
+#Oscillation spectrum from each resulting neutrino
 from SterileDar import Spectra
 from SterileDar import OscillationModel
 

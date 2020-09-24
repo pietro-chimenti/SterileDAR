@@ -1,3 +1,4 @@
+#Survival and oscillation probabilities
 import numpy as np 
 
 class OscillationModel:

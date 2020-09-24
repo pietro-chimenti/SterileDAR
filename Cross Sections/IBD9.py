@@ -12,7 +12,7 @@ import matplotlib as mpl
 cs=crosssections.crosssections()
 
 
-Enu= np.arange(0,52.85,.5)
+Enu= np.arange(ct.energythresholdIBD,ct.muonmass/2,.5)
 
 print(cs.sigmatot(Enu))
 plt.plot(Enu,cs.sigmatot(Enu),'r')

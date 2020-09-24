@@ -13,7 +13,7 @@ f=1
 f2 = 3.706    
 g = 1.26
 deltainner = 0.024
-Enu= np.arange(0,52.85,.5)
+Enu= np.arange(0,ct.muonmass/2,.5)
 sigmazero = ((((ct.planckconstantcut**2)*(ct.lightconstant**2))*((ct.fermiconstant**2) * (ct.coscabibboangle**2))*(1+deltainner))/np.pi)
 delta = (ct.neutronmass - ct.protonmass)
 Massnp = ((ct.neutronmass + ct.protonmass)/2)
@@ -29,7 +29,7 @@ def dsigmadcos(theta,Enu):
 
 
 result = [integrate.quad(lambda theta: dsigmadcos(theta,Enu), 0, 2*np.pi)
-          for Enu in np.arange(0,52.85,.5)]
+          for Enu in np.arange(0,ct.muonmass/2,.5)]
 
 print(result)
 
