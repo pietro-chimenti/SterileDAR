@@ -11,7 +11,7 @@ import matplotlib as mpl
 
 fr = 1.7152
 taun = 880.2
-Enu = np.arange(0,52.85,.5)
+Enu = np.arange(ct.energythresholdIBD,ct.muonmass/2,.5)
 
 delta = (ct.neutronmass - ct.protonmass)
 
@@ -25,7 +25,6 @@ def sigmatot(Enu):
         return ((2*(np.pi**2)/(ct.electronmass**5))*(1/(fr*taun))*(Enu-delta)*(np.sqrt((Enu-delta)**2-(ct.electronmass)**2)))
 
 
-print((2*(np.pi**2) / (ct.electronmass**5)))
-plt.plot(Enu,sigmatot(Enu))
+plt.plot(Enu,sigmatot(Enu),'r')
 plt.show()
 
