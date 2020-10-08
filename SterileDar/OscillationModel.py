@@ -6,7 +6,7 @@ class OscillationModel:
 	# you can add additional code here if needed
 		pass
 
-	DelM2 = 1.7 # eletron volts
+	DelM2 = 1.7 # electron volts
 	Ue4_2   = 0.019
 	Umu4_2  = 0.015
 	Ut4_2	= 0.01
