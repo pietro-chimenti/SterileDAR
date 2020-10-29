@@ -27,3 +27,6 @@ class Oscspec:
 
         def Oscspecvtbar(self,L,E):
                 return (spc.dGdEvmbar(E)*model.Pmt(L,E))
+            
+        def Oscspecve1(self,L,E):
+                return (spc.dGdEve(E)*model.Pee(L,E))

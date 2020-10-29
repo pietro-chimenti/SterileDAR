@@ -5,7 +5,6 @@ from SterileDar import Spectra
 from SterileDar import Oscspec
 import matplotlib.pyplot as plt
 import numpy as np
-import math
 
 print("Gráfico do espectro de energia dos (anti)neutrinos emitidos do decaimento em repouso do pion+")
 

@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
+ #Inverse beta decay cross section at first order arxiv:9903554 equation (14)
 
 import sys
 sys.path.append("..")
 from SterileDar import constants as ct
 import numpy as np
-import math
 import scipy.integrate as integrate
 import matplotlib.pyplot as plt
-import matplotlib as mpl
+
 
 f=1
 f2 = 3.706    

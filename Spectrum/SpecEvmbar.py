@@ -4,7 +4,6 @@ sys.path.append("..")
 from SterileDar import Spectra
 import matplotlib.pyplot as plt
 import numpy as np
-import math
 
 print("Gráfico do espectro dos antineutrinos do muon emitidos no decaimento em repouso do pion+")
 
