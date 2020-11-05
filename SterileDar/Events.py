@@ -16,9 +16,9 @@ class Events:
         # you can add additional code here if needed
         pass
     #Calculation PPO/Paraffin/LAB
-    def dNdEvebar(self,E1):
-        return ((nproton*exp.estimatedflux)*osc.Oscspecvebar(exp.Ljsns2,E1)*cs.sigmaIBD(E1))/(4*np.pi*exp.Ljsns2**2)
+    def dNdEvebar(self,E1,Ue4_2,Umu4_2,DelM2):
+        return ((nproton*exp.estimatedflux)*osc.Oscspecvebar(exp.Ljsns2,E1,Ue4_2,Umu4_2,DelM2)*cs.sigmaIBD(E1))/(4*np.pi*exp.Ljsns2**2)
         
     #Calculation 208Pb
-    def dNdEve(self,E2):
-        return ((npb*exp.estimatedflux)*osc.Oscspecve1(exp.Ljsns2,E2)*(ct.cm2tometer2*cs.sigmaPbvee(E2)))/(4*np.pi*exp.Ljsns2**2)
+    def dNdEve(self,E2,Ue4_2,DelM2):
+        return ((npb*exp.estimatedflux)*osc.Oscspecve1(exp.Ljsns2,E2,Ue4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvee(E2)))/(4*np.pi*exp.Ljsns2**2)

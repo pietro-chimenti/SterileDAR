@@ -16,3 +16,8 @@ mol = 6.02e23
 energythresholdIBD = 1.806 #MeV
 meter2tocm2 = 1e+4
 cm2tometer2 = 1e-4
+
+#mixing parameters
+DelM2   = 1.7
+Ue4_2   = 0.019
+Umu4_2  = 0.015
