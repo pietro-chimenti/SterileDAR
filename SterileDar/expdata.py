@@ -18,7 +18,8 @@ hjsns2 = 2.5 #m (JSNS2)
 Ljsns2 = 24 #source-detector distance in meters
 estimatedflux = float((1.8e14)*4*np.pi*(2400)**2) #flux for antimuon neutrinos per year jsns2
     
-vtotal=(np.pi)*(rjsns2**2)*hjsns2#detector volume
+#detector volume
+vtotal=(np.pi)*(rjsns2**2)*hjsns2
 vparafin=vtotal*0.15#m3
 vppo=vtotal*0.003#m3
 vlab=vtotal*0.847#m3
