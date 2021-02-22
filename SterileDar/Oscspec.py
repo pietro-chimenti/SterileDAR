@@ -10,9 +10,6 @@ class Oscspec:
         # you can add additional code here if needed
                 pass
 
-        #def Oscspecve(self,L,E):
-                #return (spc.dGdEve(E)*model.Pee(L,E)+spc.dGdEvm(E)*model.Pme(L,E))
-            
         def Oscspecve(self,L,E,Ue4_2,Umu4_2,DelM2):
                 return (spc.dGdEve(E)*model.Pee(L,E,Ue4_2,DelM2)+spc.dGdEvm(E)*model.Pme(L,E,Ue4_2,Umu4_2,DelM2))
 

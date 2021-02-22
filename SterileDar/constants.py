@@ -1,3 +1,4 @@
+#constants package
 class constants:
     def __init__(self, *args, **kwargs):
         # you can add additional code here if needed

@@ -1,3 +1,4 @@
+#Experimental data
 import numpy as np
 from SterileDar import constants as ct
 class expdata:
@@ -13,6 +14,7 @@ dlab = 863e3	#g/m³
 mmppo = 221.25	#g/mol
 dppo = 1.1e6	#g/m³
     
+#Experimental data jsns2 (arXiv:1705.08629v1)
 rjsns2 = (3.2)/2 #m (JSNS2)
 hjsns2 = 2.5 #m (JSNS2)
 Ljsns2 = 24 #source-detector distance in meters
