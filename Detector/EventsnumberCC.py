@@ -28,8 +28,17 @@ plt.show()
 
 print("Número total de interações de antineutrinos do elétron em um ano:{0}".format(ntotalvebar))
 
+<<<<<<< HEAD:Detector/EventsnumberCC.py
 #Considering 208Pb (1ton) (desappearance) (charged current)
 ntotalve = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+=======
+#Considering 208Pb (1ton) (desappearance)
+ntotalve = [integrate.quad(lambda Enu1: evt.dNdEve(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+
+ntotalve1 = [integrate.quad(lambda Enu1: evt.dNdEve(Enu1,0,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+
+ntotalve2 = [integrate.quad(lambda Enu1: evt.dNdEve(Enu1,10*ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+>>>>>>> 8ac70bf1c3841348be58b37bfc48030ba0b12639:Detector/Eventsnumber.py
 
 ntotalve1 = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
 
@@ -44,8 +53,16 @@ plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.show()
 
+<<<<<<< HEAD:Detector/EventsnumberCC.py
 print("Número total de interações de neutrinos do elétron em um ano por corrente carregada:{0}".format(ntotalve))
 
 print("Número total de interações de neutrinos do elétron em um ano por corrente carregada:{0}".format(ntotalve1))
 
 print("Número total de interações de neutrinos do elétron em um ano por corrente carregada:{0}".format(ntotalve2))
+=======
+print("Número total de interações de antineutrinos do elétron em um ano:{0}".format(ntotalve))
+
+print("Número total de interações de antineutrinos do elétron em um ano:{0}".format(ntotalve1))
+
+print("Número total de interações de antineutrinos do elétron em um ano:{0}".format(ntotalve2))
+>>>>>>> 8ac70bf1c3841348be58b37bfc48030ba0b12639:Detector/Eventsnumber.py
