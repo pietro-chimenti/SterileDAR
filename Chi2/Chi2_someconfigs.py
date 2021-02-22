@@ -21,20 +21,20 @@ Enu = np.arange(ct.energythresholdIBD,ct.muonmass/2,.2) # for IBD
 EnuPb = np.arange(lead_min_e,ct.muonmass/2,.2)                   # for Lead
 
 #Considering 208Pb (1ton) (desappearance)
-ntotalve_osc_bf = [integrate.quad(lambda Enu1: evt.dNdEve(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+ntotalve_osc_bf = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
 
 print("Configuração: Ue4={0}, DelM2={1}".format(ct.Ue4_2,ct.DelM2))
-print("Número total de interações de antineutrinos do elétron em um ano:{0}".format(ntotalve_osc_bf))
+print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_osc_bf))
 
-ntotalve_noosc = [integrate.quad(lambda Enu1: evt.dNdEve(Enu1,0,0), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+ntotalve_noosc = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), lead_min_e, ct.muonmass/2, epsabs=int_err)]
 print("Configuração: Ue4={0}, DelM2={1}".format(0,0))
-print("Número total de interações de antineutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
+print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
 
 
 def chi2_someconfig(Ue4, DelM2):
     """ Esta função bla bla bla
     """
-    ntotalve = [integrate.quad(lambda Enu1: evt.dNdEve(Enu1,Ue4,DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+    ntotalve = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
     chi2 = ((ntotalve[0][0] - ntotalve_noosc[0][0])**2)/ntotalve_noosc[0][0]
     return chi2
 
@@ -46,16 +46,20 @@ print("Chi2({0},{1})={2}".format(ct.Ue4_2,ct.DelM2,chi2_someconfig(ct.Ue4_2,ct.D
 # now plotting
 import matplotlib.cm as cm
 
-
 delta1 = 0.02
 delta2 = 0.02
 log_delm2    = np.arange(-1, 1., delta1)
 log_sin22t   = np.arange(-2, 0., delta2)
 delm2  = 10**log_delm2
 sin22t = 10**log_sin22t
+
 X, Y = np.meshgrid(delm2, sin22t)
 ue4_2    = (1.-np.sqrt(1-Y))/2.
+
+print("vchi")
+
 Z = vchi2_someconfig(ue4_2,X)
+
 plt.rcParams.update({
     "text.usetex": True,
     "font.family": "sans-serif",
@@ -73,7 +77,3 @@ plt.grid(True)
 plt.xlim([0.01,1])
 plt.ylim([0.1,10])
 plt.show()
-
-
-
-

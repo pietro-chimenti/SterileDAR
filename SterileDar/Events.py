@@ -20,5 +20,11 @@ class Events:
         return ((nproton*exp.estimatedflux)*osc.Oscspecvebar(exp.Ljsns2,E1,Ue4_2,Umu4_2,DelM2)*cs.sigmaIBD(E1))/(4*np.pi*exp.Ljsns2**2)
         
     #Calculation 208Pb
-    def dNdEve(self,E2,Ue4_2,DelM2):
+    
+    #charged current
+    def dNdEvee(self,E2,Ue4_2,DelM2):
         return ((npb*exp.estimatedflux)*osc.Oscspecve1(exp.Ljsns2,E2,Ue4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvee(E2)))/(4*np.pi*exp.Ljsns2**2)
+    
+    #neutral current
+    def dNdEveve(self,E2,Ue4_2,DelM2):
+        return ((npb*exp.estimatedflux)*osc.Oscspecve1(exp.Ljsns2,E2,Ue4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
