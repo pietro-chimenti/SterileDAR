@@ -1,10 +1,12 @@
+#Cross sections information and calculations
+
 import sys
 sys.path.append("..")
 from SterileDar import constants as ct
 import numpy as np
 from scipy.interpolate import interp1d
 
-
+#Necessary constants IBDcs calculation
 f = 1
 f2 = 3.706    
 g = 1.26
@@ -18,11 +20,13 @@ class crosssections:
         # you can add additional code here if needed
         pass
 
-    #Inverse beta decay cross section at zeroth order arxiv:9903554 equation (10)
+#IBD cross section at zeroth order arxiv:9903554 equation (10)
     def sigmaIBD(self,Enu):#Cross section IBD Simple cm^2
         return (sigmazero*(f**2+3*g**2)*(Enu - delta)*(np.sqrt((Enu - delta)**2 - ct.electronmass**2))) #m^2
     
-    #cross sections 208Pb based in arXiv:0209267
+#208Pb CS data based in arXiv:0209267
+    E = np.arange(5,100,5)
+    
     vee1n = [0,.29e-11,.91,4.96,14.66,25.05,29.27,33.56,37.91,42.54,47.17,52.02,56.31,60.39,64.03,67.04,69.69,71.95,73.91]
     
     vee2n = [0,0,0,0,.45,3.15,10.85,23.68,38.97,53.79,71.63,90.05,108.73,129.14,150.40,170.75,191.16,211.73,231.25]
@@ -41,8 +45,11 @@ class crosssections:
     
     vbarvbartotal = [.66e-11,.007,.08,.24,.54,1.04,1.79,2.82,4.17,5.82,7.78,10.04,12.57,15.34,18.31,21.42,24.61,27.82,31.00]
     
-    veetotal40 = [i*1e-40 for i in veetotal]
+    veetotal40 = [i*1e-40 for i in veetotal] #CC data electron neutrino e-40
     
-    E = np.arange(5,100,5)
+    sigmaPbvee = interp1d(E, veetotal40) #interpolated CS electron neutrino (CC interaction) [cm^2]
     
-    sigmaPbvee = interp1d(E, veetotal40) #cm^2
+    vvtotal40 = [i*1e-40 for i in vvtotal]
+
+    sigmaPbvv = interp1d(E, vvtotal40) #interpolated CS neutrino (NC interaction) [cm^2]
+    
