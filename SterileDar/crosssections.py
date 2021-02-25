@@ -53,3 +53,6 @@ class crosssections:
 
     sigmaPbvv = interp1d(E, vvtotal40) #interpolated CS neutrino (NC interaction) [cm^2]
     
+    vbarvbartotal40 = [i*1e-40 for i in vbarvbartotal]
+    
+    sigmaPbvbarvbar = interp1d(E, vbarvbartotal40)  #interpolated CS neutrino (NC interaction) [cm^2]
