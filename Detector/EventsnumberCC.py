@@ -29,11 +29,7 @@ plt.show()
 print("Número total de interações de antineutrinos do elétron em um ano:{0}".format(ntotalvebar))
 
 #Considering 208Pb (1ton) (desappearance) (charged current)
-ntotalve = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
-
-ntotalve1 = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
-
-ntotalve2 = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,10*ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+ntotalve = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)][0][0] + evt.NMuOriginCC(ct.NuMuenergy,ct.Ue4_2,ct.Umu4_2,ct.DelM2) 
 
 
 plt.plot(EnuPb,evt.dNdEvee(EnuPb,ct.Ue4_2,ct.DelM2),'r',linewidth=1.0)
@@ -46,7 +42,3 @@ plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.show()
 
 print("Número total de interações de neutrinos do elétron em um ano por corrente carregada:{0}".format(ntotalve))
-
-print("Número total de interações de neutrinos do elétron em um ano por corrente carregada:{0}".format(ntotalve1))
-
-print("Número total de interações de neutrinos do elétron em um ano por corrente carregada:{0}".format(ntotalve2))

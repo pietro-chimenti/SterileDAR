@@ -23,11 +23,32 @@ class Events:
     
 #Charged current
     def dNdEvee(self,E2,Ue4_2,DelM2):
-        return ((npb*exp.estimatedflux)*osc.Oscspecve1(exp.Ljsns2,E2,Ue4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvee(E2)))/(4*np.pi*exp.Ljsns2**2)
+        return ((npb*exp.estimatedflux)*osc.Oscspecve(exp.Ljsns2,E2,Ue4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvee(E2)))/(4*np.pi*exp.Ljsns2**2)
     
-#Neutral current
+    def NMuOriginCC(self,E2,Ue4_2,Umu4_2,DelM2):
+        return ((npb*exp.estimatedflux)*osc.NuMuNue(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvee(E2)))/(4*np.pi*exp.Ljsns2**2)
+    
+#Neutral current (neutrinos)
     def dNdEveve(self,E2,Ue4_2,DelM2):
-        return ((npb*exp.estimatedflux)*osc.Oscspecve1(exp.Ljsns2,E2,Ue4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
+        return ((npb*exp.estimatedflux)*osc.Oscspecve(exp.Ljsns2,E2,Ue4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
     
+    def NMuOriginNCve(self,E2,Ue4_2,Umu4_2,DelM2):
+        return ((npb*exp.estimatedflux)*osc.NuMuNue(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
+    
+    def dNdEvmvm(self,E2,Ue4_2,Umu4_2,DelM2):
+        return ((npb*exp.estimatedflux)*osc.Oscspecvm(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
+    
+    def NMuOriginNCvm(self,E2,Umu4_2,DelM2):
+        return ((npb*exp.estimatedflux)*osc.NuMuNuMu(exp.Ljsns2,E2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
+    
+    def dNdEvevt(self,E2,Ue4_2,Ut4_2,DelM2):
+        return ((npb*exp.estimatedflux)*osc.Oscspecvt(exp.Ljsns2,E2,Ue4_2,Ut4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
+    
+    def NMuOriginNCvt(self,E2,Umu4_2,Ut4_2,DelM2):
+        return ((npb*exp.estimatedflux)*osc.NuMuNuTau(exp.Ljsns2,E2,Umu4_2,Ut4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
+    
+    
+#Neutral current (antineutrinos)
+
     def dNdEvebarvebar(self,E2,Ue4_2,Umu4_2,DelM2):
         return (((npb*exp.estimatedflux)*osc.Oscspecvebar(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvbarvbar(E2)))/(4*np.pi*exp.Ljsns2**2))
