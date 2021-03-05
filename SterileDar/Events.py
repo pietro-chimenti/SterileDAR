@@ -52,3 +52,9 @@ class Events:
 
     def dNdEvebarvebar(self,E2,Ue4_2,Umu4_2,DelM2):
         return (((npb*exp.estimatedflux)*osc.Oscspecvebar(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvbarvbar(E2)))/(4*np.pi*exp.Ljsns2**2))
+    
+    def dNdEvmbarvmbar(self,E2,Umu4_2,DelM2):
+        return (((npb*exp.estimatedflux)*osc.Oscspecvmbar(exp.Ljsns2,E2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvbarvbar(E2)))/(4*np.pi*exp.Ljsns2**2))
+    
+    def dNdEvtbarvtbar(self,E2,Umu4_2,Ut4_2,DelM2):
+        return (((npb*exp.estimatedflux)*osc.Oscspecvtbar(exp.Ljsns2,E2,Umu4_2,Ut4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvbarvbar(E2)))/(4*np.pi*exp.Ljsns2**2))
