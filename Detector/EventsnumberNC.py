@@ -70,3 +70,32 @@ plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.show()
 
 print("Número total de interações de antineutrinos do elétron em um ano por corrente neutra:{0}".format(ntotalvebarvebar))
+
+#Considering 208Pb (1ton) (neutral current muon antineutrino)
+
+ntotalvmbarvmbar = [integrate.quad(lambda Enu1: evt.dNdEvmbarvmbar(Enu1,ct.Umu4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+
+plt.plot(EnuPb,evt.dNdEvmbarvmbar(EnuPb,ct.Umu4_2,ct.DelM2),'b',linewidth=1.0)
+
+plt.title(r'Espectro dos antineutrinos do muon para L={0}m'.format(exp.Ljsns2))
+plt.grid(True)
+plt.xlabel(r"Energia dos antineutrinos [MeV]")
+plt.ylabel(r'dN/dE [MeV$^{-1}$]')
+plt.show()
+
+print("Número total de interações de antineutrinos do muon em um ano por corrente neutra:{0}".format(ntotalvmbarvmbar))
+
+#Considering 208Pb (1ton) (neutral current tau antineutrino)
+
+ntotalvtbarvtbar = [integrate.quad(lambda Enu1: evt.dNdEvtbarvtbar(Enu1,ct.Umu4_2,ct.Ut4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+
+plt.plot(EnuPb,evt.dNdEvtbarvtbar(EnuPb,ct.Umu4_2,ct.Ut4_2,ct.DelM2),'b',linewidth=1.0)
+
+plt.title(r'Espectro dos antineutrinos do tau para L={0}m'.format(exp.Ljsns2))
+plt.grid(True)
+plt.xlabel(r"Energia dos antineutrinos [MeV]")
+plt.ylabel(r'dN/dE [MeV$^{-1}$]')
+plt.show()
+
+print("Número total de interações de antineutrinos do tau em um ano por corrente neutra:{0}".format(ntotalvtbarvtbar))
+
