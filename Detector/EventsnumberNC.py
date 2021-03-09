@@ -83,7 +83,7 @@ plt.xlabel(r"Energia dos antineutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.show()
 
-print("Número total de interações de antineutrinos do muon em um ano por corrente neutra:{0}".format(ntotalvebarvebar))
+print("Número total de interações de antineutrinos do muon em um ano por corrente neutra:{0}".format(ntotalvmbarvmbar))
 
 #Considering 208Pb (1ton) (neutral current tau antineutrino)
 
@@ -97,5 +97,5 @@ plt.xlabel(r"Energia dos antineutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.show()
 
-print("Número total de interações de antineutrinos do tau em um ano por corrente neutra:{0}".format(ntotalvebarvebar))
+print("Número total de interações de antineutrinos do tau em um ano por corrente neutra:{0}".format(ntotalvtbarvtbar))
 
