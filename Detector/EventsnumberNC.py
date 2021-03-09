@@ -17,7 +17,7 @@ lead_min_e = 5
 
 #Considering 208Pb (1ton) (neutral current electron neutrino)
 
-ntotalvv = [integrate.quad(lambda Enu1: evt.dNdEveve(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+ntotalveve = [integrate.quad(lambda Enu1: evt.dNdEveve(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)][0][0] + evt.NMuOriginNCve(ct.NuMuenergy,ct.Ue4_2,ct.Umu4_2,ct.DelM2)
 
 plt.plot(EnuPb,evt.dNdEveve(EnuPb,ct.Ue4_2,ct.DelM2),'r',linewidth=1.0)
 
@@ -27,7 +27,35 @@ plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.show()
 
-print("Número total de interações de neutrinos do elétron em um ano por corrente neutra:{0}".format(ntotalvv))
+print("Número total de interações de neutrinos do elétron em um ano por corrente neutra:{0}".format(ntotalveve))
+
+#Considering 208Pb (1ton) (neutral current muon neutrino)
+
+ntotalvmvm = [integrate.quad(lambda Enu1: evt.dNdEvmvm(Enu1,ct.Ue4_2,ct.Umu4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)][0][0] + evt.NMuOriginNCvm(ct.NuMuenergy,ct.Umu4_2,ct.DelM2)
+
+plt.plot(EnuPb,evt.dNdEvmvm(EnuPb,ct.Ue4_2,ct.Umu4_2,ct.DelM2),'r',linewidth=1.0)
+
+plt.title(r'Espectro dos neutrinos do múon para L={0}m'.format(exp.Ljsns2))
+plt.grid(True)
+plt.xlabel(r"Energia dos neutrinos [MeV]")
+plt.ylabel(r'dN/dE [MeV$^{-1}$]')
+plt.show()
+
+print("Número total de interações de neutrinos do múon em um ano por corrente neutra:{0}".format(ntotalvmvm))
+
+#Considering 208Pb (1ton) (neutral current tau neutrino)
+
+ntotalvtvt = [integrate.quad(lambda Enu1: evt.dNdEvevt(Enu1,ct.Ue4_2,ct.Ut4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)][0][0] + evt.NMuOriginNCvt(ct.NuMuenergy,ct.Umu4_2,ct.Ut4_2,ct.DelM2)
+
+plt.plot(EnuPb,evt.dNdEvevt(EnuPb,ct.Ue4_2,ct.Ut4_2,ct.DelM2),'r',linewidth=1.0)
+
+plt.title(r'Espectro dos neutrinos do múon para L={0}m'.format(exp.Ljsns2))
+plt.grid(True)
+plt.xlabel(r"Energia dos neutrinos [MeV]")
+plt.ylabel(r'dN/dE [MeV$^{-1}$]')
+plt.show()
+
+print("Número total de interações de neutrinos do múon em um ano por corrente neutra:{0}".format(ntotalvtvt))
 
 #Considering 208Pb (1ton) (neutral current electron antineutrino)
 

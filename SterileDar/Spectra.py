@@ -2,18 +2,15 @@
 from SterileDar import constants as ct
 
 class Spectra:
-	def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
 	# you can add additional code here if needed
-		pass
+        pass
+    
+    def dGdEve(self,E):
+        return (96*(E**2)*((ct.muonmass)-(2*E))/(ct.muonmass**4))
+    
+    def dGdEvmbar(self,E):
+        return (16*(E**2)*((3*ct.muonmass)-(4*E)))/(ct.muonmass**4)
 
-	def dGdEve(self,E):
-		return (96*(E**2)*((ct.muonmass)-(2*E))/(ct.muonmass**4))
-
-	def dGdEvmbar(self,E):
-		return (16*(E**2)*((3*ct.muonmass)-(4*E))/(ct.muonmass**4))
-
-	def dGdEvm(self,E):
-		if any(E == 30):
-			return 1
-		else:
-			return 0
+    def dGdEvm(self,E):
+        return 1

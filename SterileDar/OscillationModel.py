@@ -9,7 +9,7 @@ class OscillationModel:
     #DelM2 = 1.7 # electron volts
     #Ue4_2   = 0.019
     #Umu4_2  = 0.015
-    Ut4_2	= 0.01
+    #Ut4_2	= 0.01
     
     def Pee(self,L,E,Ue4_2,DelM2):
         return 1.-4.*(1-Ue4_2)*(Ue4_2)*((np.sin(1.27*DelM2*L/E))**2)
@@ -20,8 +20,8 @@ class OscillationModel:
     def Pme(self,L,E,Ue4_2,Umu4_2,DelM2):
         return 4.*(Umu4_2)*(Ue4_2)*((np.sin(1.27*DelM2*L/E))**2)
     
-    def Pmt(self,L,E,Umu4_2,DelM2):
-        return 4.*(Umu4_2)*(self.Ut4_2)*((np.sin(1.27*DelM2*L/E))**2)
+    def Pmt(self,L,E,Umu4_2,Ut4_2,DelM2):
+        return 4.*(Umu4_2)*(Ut4_2)*((np.sin(1.27*DelM2*L/E))**2)
     
-    def Pet(self,L,E,Ue4_2,DelM2):
-        return 4.*(Ue4_2)*(self.Ut4_2)*((np.sin(1.27*DelM2*L/E))**2)
+    def Pet(self,L,E,Ue4_2,Ut4_2,DelM2):
+        return 4.*(Ue4_2)*(Ut4_2)*((np.sin(1.27*DelM2*L/E))**2)
