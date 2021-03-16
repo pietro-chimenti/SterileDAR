@@ -1,11 +1,15 @@
 #Spectrum formulas of particle number
+import sys
+sys.path.append("..")
 from SterileDar import Oscspec
 from SterileDar import crosssections
 from SterileDar import expdata as exp
 from SterileDar import constants as ct
+from SterileDar import OscillationModel
 import numpy as np
 
 osc = Oscspec.Oscspec()
+model = OscillationModel.OscillationModel()
 cs = crosssections.crosssections()
 
 nproton = float(exp.hidrogeniototal) #number of protons at the detector
@@ -26,26 +30,26 @@ class Events:
         return ((npb*exp.estimatedflux)*osc.Oscspecve(exp.Ljsns2,E2,Ue4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvee(E2)))/(4*np.pi*exp.Ljsns2**2)
     
     def NMuOriginCC(self,E2,Ue4_2,Umu4_2,DelM2):
-        return ((npb*exp.estimatedflux)*osc.NuMuNue(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvee(E2)))/(4*np.pi*exp.Ljsns2**2)
+        return ((npb*exp.estimatedflux)*model.Pme(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvee(E2)))/(4*np.pi*exp.Ljsns2**2)
     
 #Neutral current (neutrinos)
     def dNdEveve(self,E2,Ue4_2,DelM2):
         return ((npb*exp.estimatedflux)*osc.Oscspecve(exp.Ljsns2,E2,Ue4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
     
     def NMuOriginNCve(self,E2,Ue4_2,Umu4_2,DelM2):
-        return ((npb*exp.estimatedflux)*osc.NuMuNue(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
+        return ((npb*exp.estimatedflux)*model.Pme(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
     
     def dNdEvmvm(self,E2,Ue4_2,Umu4_2,DelM2):
         return ((npb*exp.estimatedflux)*osc.Oscspecvm(exp.Ljsns2,E2,Ue4_2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
     
     def NMuOriginNCvm(self,E2,Umu4_2,DelM2):
-        return ((npb*exp.estimatedflux)*osc.NuMuNuMu(exp.Ljsns2,E2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
+        return ((npb*exp.estimatedflux)*model.Pmm(exp.Ljsns2,E2,Umu4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
     
     def dNdEvevt(self,E2,Ue4_2,Ut4_2,DelM2):
         return ((npb*exp.estimatedflux)*osc.Oscspecvt(exp.Ljsns2,E2,Ue4_2,Ut4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
     
     def NMuOriginNCvt(self,E2,Umu4_2,Ut4_2,DelM2):
-        return ((npb*exp.estimatedflux)*osc.NuMuNuTau(exp.Ljsns2,E2,Umu4_2,Ut4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
+        return ((npb*exp.estimatedflux)*model.Pmt(exp.Ljsns2,E2,Umu4_2,Ut4_2,DelM2)*(ct.cm2tometer2*cs.sigmaPbvv(E2)))/(4*np.pi*exp.Ljsns2**2)
     
     
 #Neutral current (antineutrinos)

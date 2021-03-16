@@ -1,4 +1,6 @@
 #Oscillation spectrum from each resulting neutrino
+import sys
+sys.path.append("..")
 from SterileDar import Spectra
 from SterileDar import OscillationModel
 
@@ -30,14 +32,3 @@ class Oscspec:
 
         def Oscspecvtbar(self,L,E,Umu4_2,Ut4_2,DelM2):
                 return (spc.dGdEvmbar(E)*model.Pmt(L,E,Umu4_2,Ut4_2,DelM2))
-
-#monoenergetic muon neutrinos times oscillation probability
-
-        def NuMuNue(self,L,E,Ue4_2,Umu4_2,DelM2):
-            return spc.dGdEvm(E)*model.Pme(L,E,Ue4_2,Umu4_2,DelM2)
-
-        def NuMuNuMu(self,L,E,Umu4_2,DelM2):
-            return spc.dGdEvm(E)*model.Pmm(L,E,Umu4_2,DelM2)
-
-        def NuMuNuTau(self,L,E,Umu4_2,Ut4_2,DelM2):
-            return spc.dGdEvm(E)*model.Pmt(L,E,Umu4_2,Ut4_2,DelM2)

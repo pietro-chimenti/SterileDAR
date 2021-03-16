@@ -18,6 +18,8 @@ energythresholdIBD = 1.806 #MeV
 meter2tocm2 = 1e+4
 cm2tometer2 = 1e-4
 NuMuenergy = 30 #MeV
+MeVtoJoule = 1.60218e-13 #Joule
+neutrinoprobabilityconstant = 1.267
 
 #mixing parameters
 DelM2   = 1.7

@@ -13,7 +13,7 @@ print("Gráfico do espectro oscilado dos antineutrinos do tau")
 L = int(input("Digite um valor para a distância: "))
 E = np.arange(10e-15,ct.muonmass/2,0.01)
 
-plt.plot(E,oscs.Oscspecvtbar(L,E,ct.Umu4_2,ct.DelM2),'r',linewidth=1.0)
+plt.plot(E,oscs.Oscspecvtbar(L,E,ct.Umu4_2,ct.Ut4_2,ct.DelM2),'r',linewidth=1.0)
 plt.title(r'Espectro oscilado dos antineutrinos do tau emitidos para L={0}m'.format(L))
 plt.grid(True)
 plt.xlabel(r'Energia dos antineutrinos [MeV]')

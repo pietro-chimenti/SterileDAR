@@ -12,11 +12,13 @@ print("Gráfico do espectro de energia dos (anti)neutrinos emitidos do decaiment
 spc = Spectra.Spectra()
 oscs = Oscspec.Oscspec()
 
+L = int(input("Digite um valor para a distância: "))
+
 E = np.arange(10e-20,52.85,0.01)
 
-plt.title(r'Espectro dos neutrinos e neutrinos oscilados')
+plt.title(r'Espectro dos neutrinos e neutrinos oscilados para L={0}'.format(L))
 plt.plot(E,spc.dGdEve(E),'r',linewidth=1.0,label='Neutrinos do elétron')
-plt.plot(E,oscs.Oscspecve(100,E,ct.Ue4_2,ct.Umu4_2,ct.DelM2),'b',linewidth=1.0,label= 'Neutrinos oscilados')
+plt.plot(E,oscs.Oscspecve(L,E,ct.Ue4_2,ct.DelM2),'b',linewidth=1.0,label= 'Neutrinos oscilados')
 plt.legend()
 plt.grid(True)
 plt.xlabel(r'Energia do (Anti)Neutrino [MeV]')
