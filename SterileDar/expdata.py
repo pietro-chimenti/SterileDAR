@@ -1,4 +1,6 @@
 #Experimental data
+import sys
+sys.path.append("..")
 import numpy as np
 from SterileDar import constants as ct
 class expdata:

@@ -1,4 +1,6 @@
 #Energy spectra of the resulting neutrinos
+import sys
+sys.path.append("..")
 from SterileDar import constants as ct
 
 class Spectra:
