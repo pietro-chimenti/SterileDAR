@@ -1,4 +1,4 @@
-#Targets number for experimental design of jsns2
+#Targets number in detector for experimental design of jsns2
 import sys
 sys.path.append("..")
 from SterileDar import expdata as exp
@@ -15,4 +15,3 @@ print(exp.oxigeniototal)
 #208Pb
 print('Número de átomos de 208Pb em 1 ton')
 print(exp.pbnumber)
-
