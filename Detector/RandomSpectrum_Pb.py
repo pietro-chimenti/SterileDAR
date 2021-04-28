@@ -32,3 +32,22 @@ plt.hist(bins[:-1], bins, weights=integrals)
 plt.plot((bins[1:]+bins[:-1])/2,samples,"*")
 plt.show() 
 
+def chi2( Ue4, DelM2 ):
+    integrals_th = []
+    chi2_th      = 0
+    for i in range(10):
+        result = integrate.quad(lambda x: evt.dNdEvee(x, Ue4, DelM2), bins[i], bins[i+1])
+        integrals_th.append(result[0])
+        #if samples[i] != 0 :        chi2_th += ((samples[i]-integrals_th[i])**2)/(samples[i])
+        if samples[i] != 0 :        chi2_th += ((integrals[i]-integrals_th[i])**2)/(samples[i])
+    return chi2_th
+
+Ue4_fig   = np.arange(0.17,0.21,0.001)
+Chi2_vals = []
+for i in Ue4_fig:
+    Chi2_vals.append(chi2(i,ct.DelM2))
+    
+
+plt.plot(Ue4_fig, Chi2_vals)
+plt.show()
+
