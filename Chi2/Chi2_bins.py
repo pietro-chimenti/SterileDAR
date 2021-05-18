@@ -1,5 +1,5 @@
-import sys
-sys.path.append("..")
+# import sys
+# sys.path.append("..")
 from SterileDar import constants as ct
 from SterileDar import expdata as exp
 from SterileDar import Events
@@ -17,14 +17,14 @@ lead_min_e = 5
 EnuPb = np.arange(lead_min_e,ct.muonmass/2,.2)  #Lead range
 
 #Considering 208Pb (1ton) (desappearance)
-ntotalve_osc_bf = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
+ntotalve_osc_bf = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)][0][0] + evt.NMuOriginCC(ct.NuMuenergy,ct.Ue4_2,ct.Umu4_2,ct.DelM2)
 
-print("Configuração: Ue4={0}, DelM2={1}".format(ct.Ue4_2,ct.DelM2))
-print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_osc_bf))
+print(r"Configuração: Ue4={0}, Umu4={1} , DelM2={2}".format(ct.Ue4_2,ct.Umu4_2,ct.DelM2))
+print(r"Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_osc_bf))
 
-ntotalve_noosc = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), lead_min_e, ct.muonmass/2, epsabs=int_err)]
-print("Configuração: Ue4={0}, DelM2={1}".format(0,0))
-print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
+ntotalve_noosc = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), lead_min_e, ct.muonmass/2, epsabs=int_err)][0][0]
+print(r"Configuração: Ue4={0}, DelM2={1}".format(0,0))
+print(r"Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
 
 bins     = np.linspace(lead_min_e, ct.muonmass/2, 10 )
 measured = np.zeros(len(bins) - 1)
@@ -37,7 +37,7 @@ osc      = np.zeros(len(bins) - 1)
 
 integral_noosc = []
 for i in range(len(bins) - 1 ):
-    no_osc[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), bins[i], bins[i+1], epsabs=int_err)][0][0]
+    no_osc[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), bins[i], bins[i+1], epsabs=int_err)][0][0] + evt.NMuOriginCC(ct.NuMuenergy,0,0,0)
     integral_noosc.append(no_osc[i])
     
 samples_noosc = []
@@ -50,7 +50,10 @@ for i in range(len(bins) - 1):
 
 integral_osc = []
 for i in range(len(bins) - 1 ):
-    osc[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0]
+    if i == 5:
+        osc[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0] + evt.NMuOriginCC(ct.NuMuenergy,ct.Ue4_2,ct.Umu4_2,ct.DelM2)
+    else:
+        osc[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0]
     integral_osc.append(osc[i])
     
 samples_osc = []
@@ -71,17 +74,17 @@ def chi2_someconfig(Ue4, DelM2):
 
 vchi2_someconfig = np.vectorize(chi2_someconfig)
 
-print("Chi2({0},{1})={2}".format(0,0,chi2_someconfig(0,0)))
-print("Chi2({0},{1})={2}".format(ct.Ue4_2,ct.DelM2,chi2_someconfig(ct.Ue4_2,ct.DelM2)))
+print(r"Chi2({0},{1})={2}".format(0,0,chi2_someconfig(0,0)))
+print(r"Chi2({0},{1})={2}".format(ct.Ue4_2,ct.DelM2,chi2_someconfig(ct.Ue4_2,ct.DelM2)))
 
 ########################################### PLOTS ##############################################
 
-plt.hist(bins[:-1], bins, weights=integral_noosc, color='salmon', label='no_osc' )
-plt.plot((bins[1:]+bins[:-1])/2,samples_noosc,"*", color='red', label='no_osc sample')
+plt.hist(bins[:-1], bins, weights=integral_noosc, color='salmon', label='no osc' )
+plt.plot((bins[1:]+bins[:-1])/2,samples_noosc,"*", color='red', label='no osc sample')
 plt.hist(bins[:-1], bins, weights=integral_osc, color='skyblue', label='best fit' )
 plt.plot((bins[1:]+bins[:-1])/2,samples_osc,"*", color='blue', label='osc sample')
-plt.xlabel('Energia [MeV]')
-plt.ylabel('Número Esperado de Interações')
+plt.xlabel(r'Energia [MeV]')
+plt.ylabel(r'Número Esperado de Interações')
 plt.legend(loc=2, shadow=True)
 plt.show()
 
@@ -111,7 +114,7 @@ ax.set_xscale("log")
 ax.set_yscale("log") 
 CS = ax.contour(Y, X, Z, levels = [1.,9.,25.] )
 ax.clabel(CS, inline=1, fontsize=10)
-ax.set_title(r'Sensitivity plot $\nu_e$ disappearence - Chi$^2$')
+ax.set_title(r'Sensitivity plot $\nu_e$ disappearence - $Chi$^2$')
 ax.set_xlabel(r'$sin^2 2\theta$')
 ax.set_ylabel(r'$\Delta m^2$')
 ax.scatter( (4*0.019*(1-0.019))  , 1.7 , c="red")
