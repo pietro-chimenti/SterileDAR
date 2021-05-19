@@ -1,6 +1,4 @@
-# Chi2 to test electron neutrino disappearence 
-#import sys
-#sys.path.append("..")
+# Code to study the Chi2 function
 from SterileDar import constants as ct
 from SterileDar import expdata as exp
 from SterileDar import Events
@@ -31,35 +29,30 @@ print("Configuração: Ue4={0}, Umu4={1} DelM2={2}".format(0,0,0))
 print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
 
 bins = np.arange(lead_min_e, ct.muonmass/2 + 0.01, (ct.muonmass/2 - lead_min_e)/10 )
-measured = np.zeros(len(bins) - 1)
-no_osc   = np.zeros(len(bins) - 1)
+measured     = np.zeros(len(bins) - 1)
+prediction   = np.zeros(len(bins) - 1)
 
 for i in range(len(bins) - 1):
     if i == 6:
-        no_osc[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), bins[i], bins[i+1], epsabs=int_err)][0][0] + evt.NMuOriginCC(ct.NuMuenergy,0,0,0)
+        measured[i] = rn.poisson([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0] + evt.NMuOriginCC(ct.NuMuenergy,ct.Ue4_2,ct.Umu4_2,ct.DelM2))
     else:
-        no_osc[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), bins[i], bins[i+1], epsabs=int_err)][0][0]
+        measured[i] = rn.poisson([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0])
   
 
 def chi2_someconfig(Ue4, Umu4, DelM2):
     """ Esta função bla bla bla
     """
-    rn.seed(20210511)
-    for i in itt.count():
-        chi2 = 0.
-        for i in range(len(bins) - 1 ):
-            if i == 6:
-                measured[i] = rn.poisson([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0]) + evt.NMuOriginCC(ct.NuMuenergy,ct.Ue4_2,ct.Umu4_2,ct.DelM2)
-            else:
-                measured[i] = rn.poisson([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0])
-            chi2+= ((measured[i]-no_osc[i])**2)/no_osc[i]
-        yield chi2
+    chi2_val = 0.
+    for i in range(len(bins) - 1 ):
+        if i == 6:
+            prediction[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0] + evt.NMuOriginCC(ct.NuMuenergy,Ue4,Umu4,DelM2)
+        else:
+            prediction[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0]
+        chi2_val+= ((measured[i]-prediction[i])**2)/prediction[i]
+    return chi2_val
 
-chi2_gen = chi2_someconfig(0, 0, ct.DelM2)
+v_chi2 = np.vectorize(chi2_someconfig)
 
-chi2_values = [ next(chi2_gen) for i in range(1000)]
-
-plt.hist(chi2_values, bins = 100, density=True)
-x_chi2 = np.linspace(0,100,101)
-plt.plot(x_chi2 ,chi2.pdf(x_chi2,10))
+x_ue4 = np.linspace(0,0.04,100)
+plt.plot(x_ue4, v_chi2(x_ue4,ct.Umu4_2,ct.DelM2))
 plt.show()
