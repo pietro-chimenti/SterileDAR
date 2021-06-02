@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import chi2
 import scipy.integrate as integrate
+import scipy.optimize  as optimize
 from numpy import  random as rn
 import itertools as itt
 from SterileDar import EventsnumberCC
@@ -13,6 +14,8 @@ from SterileDar import EventsnumberCC
 evcc = EventsnumberCC.EventsnumberCC()
 evt = Events.Events()
 int_err = 0.01
+
+rn.seed(20210601)
 
 # Energies for plotting
 lead_min_e = 6
@@ -39,7 +42,7 @@ for i in range(len(bins) - 1):
         measured[i] = rn.poisson([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0])
   
 
-def chi2_someconfig(Ue4, Umu4, DelM2):
+def chi2_disappearence(Ue4, Umu4, DelM2):
     """ Esta função bla bla bla
     """
     chi2_val = 0.
@@ -51,8 +54,30 @@ def chi2_someconfig(Ue4, Umu4, DelM2):
         chi2_val+= ((measured[i]-prediction[i])**2)/prediction[i]
     return chi2_val
 
-v_chi2 = np.vectorize(chi2_someconfig)
+v_chi2 = np.vectorize(chi2_disappearence)
 
-x_ue4 = np.linspace(0,0.04,100)
+x_ue4 = np.linspace(0.015,0.035,100)
 plt.plot(x_ue4, v_chi2(x_ue4,ct.Umu4_2,ct.DelM2))
 plt.show()
+
+def chi2_dis_ue4(Ue4):
+    return chi2_disappearence(Ue4,ct.Umu4_2,ct.DelM2)
+
+min_chi2_ue4 = optimize.minimize(chi2_dis_ue4, 0.01)
+print(min_chi2_ue4)
+print(min_chi2_ue4.x[0])
+print(min_chi2_ue4.fun)
+
+def chi2_dis_ue4_sig(Ue4):
+    return chi2_dis_ue4(Ue4)-(min_chi2_ue4.fun+1)
+
+sol1 = optimize.fsolve(chi2_dis_ue4_sig,min_chi2_ue4.x[0]+0.0001)
+sol2 = optimize.fsolve(chi2_dis_ue4_sig,min_chi2_ue4.x[0]-0.0001)
+
+print("limite superior intervalo confição:", sol1)
+print(chi2_dis_ue4(sol1[0]))
+print("limite inferior intervalo confição:", sol2)
+print(chi2_dis_ue4(sol2[0]))
+
+
+
