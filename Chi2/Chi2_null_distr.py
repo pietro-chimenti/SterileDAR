@@ -1,4 +1,5 @@
-# This code plot a chi2 distribution of the simulated data and compare it with a chi2 with 10 freedom degrees
+# This code plots a chi2 distribution of the simulated data and compare it with a chi2 with 10 freedom degrees
+# author: P. Chimenti, R.Bassi
 
 from SterileDar import constants as ct
 from SterileDar import Events

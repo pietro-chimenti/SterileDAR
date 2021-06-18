@@ -1,6 +1,6 @@
-#table with total information about interactions
-import sys
-sys.path.append("..")
+# This code plots the spectra of particle of both neutrinos and antineutrinos as a function of energy
+# author: P. Chimenti, R.Bassi
+
 import matplotlib.pyplot as plt
 from SterileDar import constants as ct
 from SterileDar import expdata as exp

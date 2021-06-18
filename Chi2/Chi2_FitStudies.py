@@ -1,5 +1,6 @@
 # Code to study the Chi2 function
-# This code plot the minimum of Chi2 as a function of Ue4^2 and calculates the confidence interval
+# This code plots the minimum of Chi2 as a function of Ue4^2 and calculates the confidence interval
+# author: P. Chimenti, R.Bassi
 
 from SterileDar import constants as ct
 from SterileDar import Events

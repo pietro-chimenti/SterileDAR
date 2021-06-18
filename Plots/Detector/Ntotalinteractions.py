@@ -1,6 +1,7 @@
-#table with total information about interactions
-import sys
-sys.path.append("..")
+# This code prints the calculated number of interactions of both neutrinos and antineutrinos
+# and a table with the information for neutral and charged current
+# author: P. Chimenti, R.Bassi
+
 from SterileDar import EventsnumberCC
 from SterileDar import EventsnumberNC
 import matplotlib.pyplot as plt

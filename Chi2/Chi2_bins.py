@@ -1,5 +1,6 @@
-# This code plot histograms of both no oscillation and oscillation with the best fit and compare with data generated with a random number generator 
+# This code plots histograms of both no oscillation and oscillation with the best fit and compare with data generated with a random number generator 
 # Plot Chi2 with bins information
+# author: P. Chimenti, R.Bassi
 
 from SterileDar import constants as ct
 from SterileDar import Events

@@ -1,4 +1,5 @@
 # This Code generates data with a random number generator
+# author: P. Chimenti, R.Bassi
 
 from SterileDar import constants as ct
 from SterileDar import Events

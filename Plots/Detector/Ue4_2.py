@@ -1,5 +1,6 @@
-import sys
-sys.path.append("..")
+# This code plots the number of interactions of each neutrino flavor and total as a function of Ue4^2
+# author: P. Chimenti, R.Bassi
+
 from SterileDar import EventsnumberCC
 from SterileDar import EventsnumberNC
 import matplotlib.pyplot as plt
