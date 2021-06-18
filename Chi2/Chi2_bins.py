@@ -1,11 +1,12 @@
-# import sys
-# sys.path.append("..")
+# This code plot histograms of both no oscillation and oscillation with the best fit and compare with data generated with a random number generator 
+# Plot Chi2 with bins information
+
 from SterileDar import constants as ct
-from SterileDar import expdata as exp
 from SterileDar import Events
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
+import matplotlib.font_manager
 
 np.random.seed(20210507)
 
@@ -114,7 +115,7 @@ ax.set_xscale("log")
 ax.set_yscale("log") 
 CS = ax.contour(Y, X, Z, levels = [1.,9.,25.] )
 ax.clabel(CS, inline=1, fontsize=10)
-ax.set_title(r'Sensitivity plot $\nu_e$ disappearence - $Chi$^2$')
+ax.set_title(r'Sensitivity plot $\nu_e$ disappearence - Chi$^2$')
 ax.set_xlabel(r'$sin^2 2\theta$')
 ax.set_ylabel(r'$\Delta m^2$')
 ax.scatter( (4*0.019*(1-0.019))  , 1.7 , c="red")

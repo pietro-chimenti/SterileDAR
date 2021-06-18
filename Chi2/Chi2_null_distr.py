@@ -1,8 +1,6 @@
-# Chi2 to test electron neutrino disappearence 
-#import sys
-#sys.path.append("..")
+# This code plot a chi2 distribution of the simulated data and compare it with a chi2 with 10 freedom degrees
+
 from SterileDar import constants as ct
-from SterileDar import expdata as exp
 from SterileDar import Events
 import numpy as np
 import matplotlib.pyplot as plt
@@ -42,8 +40,7 @@ for i in range(len(bins) - 1):
   
 
 def chi2_someconfig(Ue4, Umu4, DelM2):
-    """ Esta função bla bla bla
-    """
+    """ Esta função gera valores de chi2 utilizando um gerador de numeros aleatórios """
     rn.seed(20210511)
     for i in itt.count():
         chi2 = 0.
@@ -59,7 +56,7 @@ chi2_gen = chi2_someconfig(0, 0, ct.DelM2)
 
 chi2_values = [ next(chi2_gen) for i in range(1000)]
 
-plt.hist(chi2_values, bins = 100, density=True)
+plt.hist(chi2_values, bins = 50, density=True)
 x_chi2 = np.linspace(0,100,101)
 plt.plot(x_chi2 ,chi2.pdf(x_chi2,10))
 plt.show()

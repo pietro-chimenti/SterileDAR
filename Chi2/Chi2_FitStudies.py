@@ -1,14 +1,13 @@
 # Code to study the Chi2 function
+# This code plot the minimum of Chi2 as a function of Ue4^2 and calculates the confidence interval
+
 from SterileDar import constants as ct
-from SterileDar import expdata as exp
 from SterileDar import Events
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import chi2
 import scipy.integrate as integrate
 import scipy.optimize  as optimize
 from numpy import  random as rn
-import itertools as itt
 from SterileDar import EventsnumberCC
 
 evcc = EventsnumberCC.EventsnumberCC()
@@ -80,9 +79,9 @@ def chi2_dis_ue4_sig(Ue4):
 sol1 = optimize.fsolve(chi2_dis_ue4_sig,min_chi2_ue4.x[0]+0.0001)
 sol2 = optimize.fsolve(chi2_dis_ue4_sig,min_chi2_ue4.x[0]-0.0001)
 
-print("limite superior intervalo confição:", sol1)
+print("limite superior intervalo confiança:", sol1)
 print(chi2_dis_ue4(sol1[0]))
-print("limite inferior intervalo confição:", sol2)
+print("limite inferior intervalo confiança:", sol2)
 print(chi2_dis_ue4(sol2[0]))
 
 
