@@ -2,50 +2,42 @@
 # author: P. Chimenti, R.Bassi
 # date:   26/11/2020
 
-import sys
-sys.path.append("..")
 from SterileDar import constants as ct
-from SterileDar import expdata as exp
 from SterileDar import Events
+from SterileDar import EventsnumberCC
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.integrate as integrate
 
-
+evcc = EventsnumberCC.EventsnumberCC()
 evt = Events.Events()
 int_err = 0.01
 
 # Energies for plotting
 lead_min_e = 6
-Enu = np.arange(ct.energythresholdIBD,ct.muonmass/2,.2) # for IBD
-EnuPb = np.arange(lead_min_e,ct.muonmass/2,.2)                   # for Lead
+EnuPb = np.arange(lead_min_e,ct.muonmass/2,.2)                  # for Lead
 
 #Considering 208Pb (1ton) (desappearance)
-ntotalve_osc_bf = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
-
-print("Configuração: Ue4={0}, DelM2={1}".format(ct.Ue4_2,ct.DelM2))
+ntotalve_osc_bf = evcc.ntotalve(ct.Ue4_2,ct.Umu4_2,ct.DelM2)
+print("Configuração: Ue4={0}, Umu4={1}, DelM2={2}".format(ct.Ue4_2,ct.Umu4_2,ct.DelM2))
 print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_osc_bf))
 
-ntotalve_noosc = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), lead_min_e, ct.muonmass/2, epsabs=int_err)]
-print("Configuração: Ue4={0}, DelM2={1}".format(0,0))
+ntotalve_noosc = evcc.ntotalve(0,0,0)
+print("Configuração: Ue4={0}, Umu4={1}, DelM2={2}".format(0,0,0))
 print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
 
-
-def chi2_someconfig(Ue4, DelM2):
+def chi2_someconfig(Ue4_2, Umu4_2, DelM2):
     """ Esta função bla bla bla
     """
-    ntotalve = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), lead_min_e, ct.muonmass/2, epsabs=int_err)]
-    chi2 = ((ntotalve[0][0] - ntotalve_noosc[0][0])**2)/ntotalve_noosc[0][0]
+    ntotalve = evcc.ntotalve(Ue4_2,Umu4_2,DelM2)
+    chi2 = ((ntotalve - ntotalve_noosc)**2)/ntotalve_noosc
     return chi2
 
 vchi2_someconfig = np.vectorize(chi2_someconfig)
 
-print("Chi2({0},{1})={2}".format(0,0,chi2_someconfig(0,0)))
-print("Chi2({0},{1})={2}".format(ct.Ue4_2,ct.DelM2,chi2_someconfig(ct.Ue4_2,ct.DelM2)))
+print("Chi2({0},{1},{2})={3}".format(0,0,0,chi2_someconfig(0,0,0)))
+print("Chi2({0},{1},{2})={3}".format(ct.Ue4_2,ct.Umu4_2,ct.DelM2,chi2_someconfig(ct.Ue4_2,ct.Umu4_2,ct.DelM2)))
 
-# now plotting
-import matplotlib.cm as cm
-
+# Now plotting
 delta1 = 0.02
 delta2 = 0.02
 log_delm2    = np.arange(-1, 1., delta1)
@@ -58,7 +50,7 @@ ue4_2    = (1.-np.sqrt(1-Y))/2.
 
 print("vchi")
 
-Z = vchi2_someconfig(ue4_2,X)
+Z = vchi2_someconfig(ue4_2,ct.Umu4_2,X)
 
 plt.rcParams.update({
     "text.usetex": True,

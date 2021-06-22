@@ -1,5 +1,6 @@
-import sys
-sys.path.append("..")
+# This code plots the number of the interactions of both neutrinos and antineutrinos as a function of DeltaM^2
+# author: P. Chimenti, R.Bassi
+
 from SterileDar import EventsnumberCC
 from SterileDar import EventsnumberNC
 import matplotlib.pyplot as plt

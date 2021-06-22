@@ -1,4 +1,5 @@
-#coding=utf-8
+# This code plots the survival probability of muon neutrinos with a fixed distance
+# author: P. Chimenti, R.Bassi
 
 print("Gráfico da probabilidade de sobrevivência do neutrino do muon para distância fixa")
 import sys

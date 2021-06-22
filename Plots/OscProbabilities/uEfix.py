@@ -1,8 +1,8 @@
-#coding=utf-8
+# This code plots the survival probability of muon neutrinos with fixed energy
+# author: P. Chimenti, R.Bassi
 
 print("Gráfico da probabilidade de sobrevivência do neutrino do muon para energia fixa")
-import sys
-sys.path.append("..")
+
 from SterileDar import OscillationModel
 import matplotlib.pyplot as plt
 import numpy as np

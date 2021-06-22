@@ -1,6 +1,6 @@
-#Targets number in detector for experimental design of jsns2
-import sys
-sys.path.append("..")
+# This code prints the calculated number of targets in the experimental design of jsns2
+# author: P. Chimenti, R.Bassi
+
 from SterileDar import expdata as exp
 
 #PPO/LAB/Paraffin

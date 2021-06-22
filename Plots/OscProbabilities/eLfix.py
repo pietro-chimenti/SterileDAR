@@ -1,6 +1,6 @@
-# coding=utf-8
-import sys
-sys.path.append("..")
+# This code plots the survival probability of electron neutrinos with a fixed distance
+# author: P. Chimenti, R.Bassi
+
 from SterileDar import OscillationModel
 import matplotlib.pyplot as plt
 from SterileDar import constants as ct
