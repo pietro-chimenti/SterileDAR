@@ -1,4 +1,5 @@
 # This code plots the spectra of particle of both neutrinos and antineutrinos as a function of energy
+# CC and NC interactions
 # author: P. Chimenti, R.Bassi
 
 import matplotlib.pyplot as plt

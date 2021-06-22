@@ -1,6 +1,6 @@
-# coding=utf-8
-import sys
-sys.path.append("..")
+# This code plots the spectrum of electron neutrinos emitted in pion DAR
+# author: P. Chimenti, R.Bassi
+
 from SterileDar import Spectra
 import matplotlib.pyplot as plt
 import numpy as np

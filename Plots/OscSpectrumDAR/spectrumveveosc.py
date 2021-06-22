@@ -1,6 +1,7 @@
-# coding=utf-8
-import sys
-sys.path.append("..")
+# This code plots the spectrum of particles emitted in pion DAR considering oscillation and survival probabilities
+# and compares with non oscillated spectrum
+# author: P. Chimenti, R.Bassi
+
 from SterileDar import Spectra
 from SterileDar import Oscspec
 from SterileDar import constants as ct

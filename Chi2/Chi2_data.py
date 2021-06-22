@@ -30,7 +30,7 @@ for experiment in range(1):
     prediction   = np.zeros(len(bins) - 1)
     
 
-    # Here we simulate experimental data ("mock" data) 
+# Here we simulate experimental data ("mock" data) 
     for i in range(len(bins) - 1):
         if i == 6:
             measured[i] = rn.poisson([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,ct.Ue4_2,ct.DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0] + evt.NMuOriginCC(ct.NuMuenergy,ct.Ue4_2,ct.Umu4_2,ct.DelM2))
@@ -39,7 +39,7 @@ for experiment in range(1):
       
     
     
-    #Here we define the Chi^2
+#Here we define the Chi^2
     def chi2_disappearence(Ue4, Umu4, DelM2):
         """ This function calculates the chi2 for the nu_e disappearence channel on Pb 
         """
@@ -55,7 +55,7 @@ for experiment in range(1):
     v_chi2 = np.vectorize(chi2_disappearence)
     
 
-    # Find minimum of Chi2 as function of Ue4
+# Find minimum of Chi2 as function of Ue4
     
     def chi2_dis_ue4(Ue4):
         return chi2_disappearence(Ue4,ct.Umu4_2,ct.DelM2)
@@ -63,7 +63,7 @@ for experiment in range(1):
     min_chi2_ue4 = optimize.minimize(chi2_dis_ue4, 0.02)
 
     
-    # Find interval of Ue4
+# Find interval of Ue4
     
     def chi2_dis_ue4_sig(Ue4):
         return chi2_dis_ue4(Ue4)-(min_chi2_ue4.fun+1)

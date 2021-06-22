@@ -1,48 +1,35 @@
- #Inverse beta decay cross section at first order arxiv:9903554 equation (14)
+# This code plots the Inverse beta decay cross section at first order arxiv:9903554 equation (14)
+# author: P. Chimenti, R.Bassi
 
-import sys
-sys.path.append("..")
 from SterileDar import constants as ct
+from SterileDar import crosssections
 import numpy as np
 import scipy.integrate as integrate
 import matplotlib.pyplot as plt
+import matplotlib.font_manager
 
+cs=crosssections.crosssections()
 
-f=1
-f2 = 3.706    
-g = 1.26
-deltainner = 0.024
-Enu= np.arange(0,ct.muonmass/2,.5)
-sigmazero = ((((ct.planckconstantcut**2)*(ct.lightconstant**2))*((ct.fermiconstant**2) * (ct.coscabibboangle**2))*(1+deltainner))/np.pi)
-delta = (ct.neutronmass - ct.protonmass)
-Massnp = ((ct.neutronmass + ct.protonmass)/2)
+int_err = 0.01
+Enu     = np.arange(ct.energythresholdIBD , ct.muonmass/2, 0.5)
 
-#Eezero = Enu - delta
-#pezero = np.sqrt((Enu - delta)**2 - ct.electronmass**2)
-#vezero = ( np.sqrt((Enu - delta)**2 - ct.electronmass**2) )/(Enu - delta)
+result = [integrate.quad(lambda theta: cs.dsigmadcos(theta,Enu), 0, 2*np.pi, epsabs=int_err)
+          for Enu in np.arange(ct.energythresholdIBD, ct.muonmass/2, .5)]
 
-def dsigmadcos(theta,Enu):
-        return (sigmazero/2) * ((f**2 +3*g**2) + (f**2-g**2)*((np.sqrt(((Enu-delta)*((1-(Enu/Massnp)*(1-((np.sqrt((Enu-delta)**2-ct.electronmass**2))/(Enu-delta))*np.cos(theta))) -  ((delta**2 - ct.electronmass**2)/(2*Massnp))  ))**2 - ct.electronmass**2))/((Enu - delta )*(1 - (Enu/Massnp)*(1 - ( ( np.sqrt((Enu - delta)**2 - ct.electronmass**2) )/(Enu - delta) )*np.cos(theta))))*np.cos(theta))) * ((Enu-delta)*(1 - (Enu/Massnp)*(1-((np.sqrt((Enu-delta)**2-ct.electronmass**2))/(Enu-delta))*np.cos(theta))) -((delta**2 - ct.electronmass**2)/(2*Massnp))) * (np.sqrt(( ( Enu - delta )*(1 - (Enu/Massnp)*(1 - ( ( np.sqrt((Enu - delta)**2 - ct.electronmass**2) )/(Enu - delta) )*np.cos(theta))) -  ((delta**2 - ct.electronmass**2)/(2*Massnp))    )**2 - ct.electronmass**2)) \
-            - (sigmazero/2) * ((2*(f+f2)*((2*( Enu - delta )+delta)*(1-( ( np.sqrt((Enu - delta)**2 - ct.electronmass**2) )/(Enu - delta) )*np.cos(theta))-((ct.electronmass**2)/( Enu - delta )))+(f**2+g**2)*((delta)*(1+( ( np.sqrt((Enu - delta)**2 - ct.electronmass**2) )/(Enu - delta) )*np.cos(theta))-((ct.electronmass**2)/( Enu - delta )))+(f**2+3*g**2)*((( Enu - delta )+delta)*(1-(np.cos(theta)/( ( np.sqrt((Enu - delta)**2 - ct.electronmass**2) )/(Enu - delta) )))-(delta))+(f**2-g**2)*((( Enu - delta )+delta)*(1-(np.cos(theta)/( ( np.sqrt((Enu - delta)**2 - ct.electronmass**2) )/(Enu - delta) )))-(delta))*(( ( np.sqrt((Enu - delta)**2 - ct.electronmass**2) )/(Enu - delta) )*np.cos(theta)))/Massnp)*\
-                (Enu-delta)*(np.sqrt((Enu-delta)**2 - ct.electronmass**2))
+plot = []
+for i in result:
+    plot.append(i[0])
 
-
-result = [integrate.quad(lambda theta: dsigmadcos(theta,Enu), 0, 2*np.pi)
-          for Enu in np.arange(0,ct.muonmass/2,.5)]
-
-print(result)
-
-#GAMA= 2*(f+f2)*((2*Eezero+delta)*(1-vezero*np.cos(theta))-((ct.electronmass**2)/Eezero))+(f**2+g**2)*((delta)*(1+vezero*np.cos(theta))-((ct.electronmass**2)/Eezero))+(f**2+3*g**2)*((Eezero+delta)*(1-(np.cos(theta)/vezero))-(delta))+(f**2-g**2)*((Eezero+delta)*(1-(np.cos(theta)/vezero))-(delta))*(vezero*np.cos(theta))
-
-plt.plot(Enu,result)
 plt.show()
 
-print(ct.coscabibboangle)
-#plt.xlabel("Valores de ka")
-#plt.ylabel("Valores da integral")
 
-#Ee1= Eezero*(1 - (Enu/Massnp)*(1 - vezero*np.cos(theta)))
-
-#ve1= (pe1)/(Ee1)
-
-#pe1= np.sqrt(Ee1**2 - ct.electronmass**2)
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"]})
+plt.title(u'Seção de choque IBD a primeira ordem')
+plt.plot(Enu, plot, 'r')
+plt.grid(True)
+plt.xlabel(r"Energia dos neutrinos [MeV]")
+plt.ylabel(r"Seção de choque [m$^{2}$]")
+plt.show()

@@ -1,7 +1,8 @@
-#coding=utf-8
+# This code plots the oscillation probability of muon to electron neutrinos with fixed energy
+# author: P. Chimenti, R.Bassi
+
 print("Gráfico da probabilidade de oscilação do neutrino do muon para o neutrino do elétron a energia fixa")
-import sys
-sys.path.append("..")
+
 from SterileDar import OscillationModel
 import matplotlib.pyplot as plt
 import numpy as np
