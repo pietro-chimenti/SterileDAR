@@ -1,10 +1,9 @@
 #Oscillation spectrum from each resulting neutrino
-import sys
-sys.path.append("..")
-from SterileDar import Spectra
+
+from SterileDar import DARSpectrum
 from SterileDar import OscillationModel
 
-spc = Spectra.Spectra()
+spc = DARSpectrum.Spectra()
 model = OscillationModel.OscillationModel()
 
 class Oscspec:

@@ -12,6 +12,13 @@ evnc = EventsnumberNC.EventsnumberNC()
 DelM2 = np.arange(0,20,.2)
 
 
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"],
+    "font.size": 16,
+    "axes.titlepad": 25})
+
 #Considering 208Pb (1ton) (desappearance) (charged current)
 
 Numberve = [evcc.ntotalve(ct.Ue4_2,ct.Umu4_2,DelM2)

@@ -3,18 +3,17 @@
 # date:   26/11/2020
 
 from SterileDar import constants as ct
-from SterileDar import Events
+from SterileDar import InteractionSpectrum
 from SterileDar import EventsnumberCC
 import numpy as np
 import matplotlib.pyplot as plt
 
 evcc = EventsnumberCC.EventsnumberCC()
-evt = Events.Events()
+evt = InteractionSpectrum.Events()
 int_err = 0.01
 
 # Energies for plotting
-lead_min_e = 6
-EnuPb = np.arange(lead_min_e,ct.muonmass/2,.2)                  # for Lead
+EnuPb = np.arange(ct.lead_min_e,ct.muonmass/2,.2)                  # for Lead
 
 #Considering 208Pb (1ton) (desappearance)
 ntotalve_osc_bf = evcc.ntotalve(ct.Ue4_2,ct.Umu4_2,ct.DelM2)

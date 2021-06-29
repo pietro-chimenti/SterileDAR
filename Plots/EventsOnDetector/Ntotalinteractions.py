@@ -81,5 +81,5 @@ table.set_fontsize(14)
 table.scale(1,2)
 ax.axis('off')
 
-plt.title('Número de interações durante um ano')
+plt.title('Número de interações durante um ano', pad=None)
 plt.show()

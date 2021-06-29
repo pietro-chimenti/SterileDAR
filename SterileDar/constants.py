@@ -1,3 +1,5 @@
+import numpy as np
+
 #constants package
 class constants:
     def __init__(self, *args, **kwargs):
@@ -26,3 +28,12 @@ DelM2   = 1.7
 Ue4_2   = 0.019
 Umu4_2  = 0.015
 Ut4_2   = 0.01
+
+#Experimental data jsns2 (arXiv:1705.08629v1)
+rjsns2 = (3.2)/2 #m (JSNS2)
+hjsns2 = 2.5 #m (JSNS2)
+Ljsns2 = 24 #source-detector distance in meters
+estimatedflux = float((1.8e14)*4*np.pi*(2400)**2) #antimuon neutrinos per year jsns2
+
+#EMin Pb data
+lead_min_e = 5

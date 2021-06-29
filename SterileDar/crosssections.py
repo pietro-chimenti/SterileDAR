@@ -1,7 +1,5 @@
 #Cross sections information and calculations
 
-import sys
-sys.path.append("..")
 from SterileDar import constants as ct
 import numpy as np
 from scipy.interpolate import interp1d

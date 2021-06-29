@@ -1,9 +1,9 @@
 # Code to study the Chi2 function
-# This code plots the minimum of Chi2 as a function of Ue4^2 and calculates the confidence interval
+
 # author: P. Chimenti, R.Bassi
 
 from SterileDar import constants as ct
-from SterileDar import Events
+from SterileDar import InteractionSpectrum
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
@@ -12,14 +12,13 @@ from numpy import  random as rn
 from SterileDar import EventsnumberCC
 
 evcc = EventsnumberCC.EventsnumberCC()
-evt = Events.Events()
+evt = InteractionSpectrum.Events()
 
 int_err = 0.01
 rn.seed(20210607)
 
 # Energies for plotting
-lead_min_e = 6
-EnuPb = np.arange(lead_min_e,ct.muonmass/2,.2)                   # for Lead
+EnuPb = np.arange(ct.lead_min_e,ct.muonmass/2,.2)                   # for Lead
 
 #Considering 208Pb (1ton) (desappearance)
 ntotalve_osc_bf = [evcc.ntotalve(ct.Ue4_2,ct.Umu4_2,ct.DelM2)]
@@ -31,7 +30,7 @@ ntotalve_noosc = [evcc.ntotalve(0,0,0)]
 print("Configuração: Ue4={0}, Umu4={1} DelM2={2}".format(0,0,0))
 print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
 
-bins = np.linspace(lead_min_e, ct.muonmass/2, 10+1 )
+bins = np.linspace(ct.lead_min_e, ct.muonmass/2, 10+1 )
 measured     = np.zeros(len(bins) - 1)
 prediction   = np.zeros(len(bins) - 1)
 
@@ -59,7 +58,10 @@ v_chi2 = np.vectorize(chi2_disappearence)
 # plotting Chi2 as a function of Ue4
 
 x_ue4 = np.linspace(0.001,0.05,100+1)
-plt.plot(x_ue4, v_chi2(x_ue4,ct.Umu4_2,ct.DelM2))
+plt.title(r'Mínimo de $\chi^2$ em função de $|U_{e4}|^{2}$')
+plt.xlabel(r'$|U_{e4}|^{2}$')
+plt.ylabel(r'$\chi^2$')
+plt.plot(x_ue4, v_chi2(x_ue4,ct.Umu4_2,ct.DelM2), 'r')
 plt.show()
 
 # find minimum of Chi2 as function of Ue4
@@ -84,6 +86,3 @@ print("limite superior intervalo confiança:", sol1)
 print(chi2_dis_ue4(sol1[0]))
 print("limite inferior intervalo confiança:", sol2)
 print(chi2_dis_ue4(sol2[0]))
-
-
-
