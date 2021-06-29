@@ -1,6 +1,5 @@
 #Spectrum formulas of particle number
-import sys
-sys.path.append("..")
+
 from SterileDar import Oscspec
 from SterileDar import crosssections
 from SterileDar import expdata as exp

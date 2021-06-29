@@ -1,6 +1,5 @@
 #Survival and oscillation probabilities
-import sys
-sys.path.append("..")
+
 import numpy as np
 from SterileDar import constants as ct
 

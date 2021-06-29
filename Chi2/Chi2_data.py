@@ -1,8 +1,8 @@
-# This Code generates data with a random number generator
+# This Code generates a csv data with a random number generator
 # author: P. Chimenti, R.Bassi
 
 from SterileDar import constants as ct
-from SterileDar import Events
+from SterileDar import InteractionSpectrum
 import numpy as np
 import scipy.integrate as integrate
 import scipy.optimize  as optimize
@@ -12,7 +12,7 @@ import time
 start_time = time.time()
 
 
-evt = Events.Events()
+evt = InteractionSpectrum.Events()
 
 int_err = 0.01
 #rn.seed(20210607)

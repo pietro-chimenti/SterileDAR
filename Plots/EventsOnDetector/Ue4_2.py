@@ -17,7 +17,7 @@ Ue4_2 = np.arange(0.005,0.05,.0005)
 Numberve = [evcc.ntotalve(Ue4_2,ct.Umu4_2,ct.DelM2)
           for Ue4_2 in Ue4_2]
 
-plt.plot(Ue4_2,Numberve,'r',linewidth=1.0)
+plt.plot(Ue4_2,Numberve,'r',linewidth=1.5)
 plt.title(r'Número de Interações de $\nu_{e}^{(CC)}$ em função de $|U_{e4}|^{2}$')
 plt.grid(True)
 plt.xlabel(r"$|U_{e4}|^{2}$")
@@ -30,7 +30,7 @@ plt.show()
 Numberveve = [evnc.ntotalveve(Ue4_2,ct.Umu4_2,ct.DelM2)
           for Ue4_2 in Ue4_2]
 
-plt.plot(Ue4_2,Numberveve,'r',linewidth=1.0)
+plt.plot(Ue4_2,Numberveve,'r',linewidth=1.5)
 plt.title(r'Número de Interações de $\nu_{e}^{(NC)}$ em função de $|U_{e4}|^{2}$')
 plt.grid(True)
 plt.xlabel(r"$|U_{e4}|^{2}$")
@@ -43,7 +43,7 @@ plt.show()
 Numbervmvm = [evnc.ntotalvmvm(Ue4_2,ct.Umu4_2,ct.DelM2)
           for Ue4_2 in Ue4_2]
 
-plt.plot(Ue4_2,Numbervmvm,'r',linewidth=1.0)
+plt.plot(Ue4_2,Numbervmvm,'r',linewidth=1.5)
 plt.title(r'Número de Interações de $\nu_{\mu}^{(NC)}$ em função de $|U_{e4}|^{2}$')
 plt.grid(True)
 plt.xlabel(r"$|U_{e4}|^{2}$")
@@ -56,7 +56,7 @@ plt.show()
 Numbervtvt = [evnc.ntotalvtvt(Ue4_2,ct.Umu4_2,ct.Ut4_2,ct.DelM2)
           for Ue4_2 in Ue4_2]
 
-plt.plot(Ue4_2,Numbervtvt,'r',linewidth=1.0)
+plt.plot(Ue4_2,Numbervtvt,'r',linewidth=1.5)
 plt.title(r'Número de Interações de $\nu_{\tau}^{(NC)}$ em função de $|U_{e4}|^{2}$')
 plt.grid(True)
 plt.xlabel(r"$|U_{e4}|^{2}$")
@@ -69,7 +69,7 @@ plt.show()
 Numbervebarvebar = [evnc.ntotalvebarvebar(Ue4_2,ct.Umu4_2,ct.DelM2)
           for Ue4_2 in Ue4_2]
 
-plt.plot(Ue4_2,Numbervebarvebar,'r',linewidth=1.0)
+plt.plot(Ue4_2,Numbervebarvebar,'r',linewidth=1.5)
 plt.title(r'Número de Interações de $\bar{\nu}_{e}^{(NC)}$ em função de $|U_{e4}|^{2}$')
 plt.grid(True)
 plt.xlabel(r"$|U_{e4}|^{2}$")
@@ -108,7 +108,7 @@ zipped_lists = zip(Numberve, Numberveve, Numbervmvm, Numbervtvt, Numbervebarveba
 
 sum = [x1 + x2 + x3 + x4 + x5 for (x1, x2, x3, x4, x5) in zipped_lists]
 
-plt.plot(Ue4_2,sum,'r',linewidth=1.0)
+plt.plot(Ue4_2,sum,'r',linewidth=1.5)
 plt.title(r'Número total de Interações de $\nu$ em função de $|U_{e4}|^{2}$')
 plt.grid(True)
 plt.xlabel(r"$|U_{e4}|^{2}$")

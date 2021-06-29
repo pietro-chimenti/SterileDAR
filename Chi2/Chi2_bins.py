@@ -3,7 +3,7 @@
 # author: P. Chimenti, R.Bassi
 
 from SterileDar import constants as ct
-from SterileDar import Events
+from SterileDar import InteractionSpectrum
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
@@ -11,7 +11,7 @@ import matplotlib.font_manager
 
 np.random.seed(20210507)
 
-evt = Events.Events()
+evt = InteractionSpectrum.Events()
 int_err = 0.01
 
 # Energies for plotting
@@ -81,14 +81,24 @@ print(r"Chi2({0},{1})={2}".format(ct.Ue4_2,ct.DelM2,chi2_someconfig(ct.Ue4_2,ct.
 
 ########################################### PLOTS ##############################################
 
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"],
+    "font.size": 16,
+    "axes.titlepad": 25})
+
+
 plt.hist(bins[:-1], bins, weights=integral_noosc, color='salmon', label='no osc' )
 plt.plot((bins[1:]+bins[:-1])/2,samples_noosc,"*", color='red', label='no osc sample')
 plt.hist(bins[:-1], bins, weights=integral_osc, color='skyblue', label='best fit' )
 plt.plot((bins[1:]+bins[:-1])/2,samples_osc,"*", color='blue', label='osc sample')
+plt.title(r'Histograma do número esperado de interações com $^{208}$Pb')
 plt.xlabel(r'Energia [MeV]')
 plt.ylabel(r'Número Esperado de Interações')
 plt.legend(loc=2, shadow=True)
 plt.show()
+
 
 
 ######################################### PLOT CHI2 ############################################
@@ -106,10 +116,7 @@ ue4_2    = (1.-np.sqrt(1-Y))/2.
 Z = vchi2_someconfig(ue4_2,X)
 
 
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "sans-serif",
-    "font.sans-serif": ["Helvetica"]})
+
 
 fig, ax = plt.subplots()
 ax.set_xscale("log") 

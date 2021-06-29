@@ -1,17 +1,18 @@
 #Event numbers for neutrinos and antineutrinos considering neutral current process
-import sys
-sys.path.append("..")
+
 from SterileDar import constants as ct
-from SterileDar import Events
+from SterileDar import InteractionSpectrum
 import numpy as np
 import scipy.integrate as integrate
 
-evt = Events.Events()
-Enu = np.arange(ct.energythresholdIBD,ct.muonmass/2,.2)
-EnuPb = np.arange(5,ct.muonmass/2,.2)
+evt = InteractionSpectrum.Events()
+
 
 int_err = 0.01
 lead_min_e = 5
+
+Enu = np.arange(ct.energythresholdIBD,ct.muonmass/2,.2)
+EnuPb = np.arange(lead_min_e,ct.muonmass/2,.2)
 
 class EventsnumberNC:
 

@@ -2,7 +2,7 @@
 # author: P. Chimenti, R.Bassi
 
 from SterileDar import constants as ct
-from SterileDar import Events
+from SterileDar import InteractionSpectrum
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import chi2
@@ -12,12 +12,11 @@ import itertools as itt
 from SterileDar import EventsnumberCC
 
 evcc = EventsnumberCC.EventsnumberCC()
-evt = Events.Events()
+evt = InteractionSpectrum.Events()
 int_err = 0.01
 
 # Energies for plotting
-lead_min_e = 6
-EnuPb = np.arange(lead_min_e,ct.muonmass/2,.2)                   # for Lead
+EnuPb = np.arange(ct.lead_min_e,ct.muonmass/2,.2)                   # for Lead
 
 #Considering 208Pb (1ton) (desappearance)
 ntotalve_osc_bf = [evcc.ntotalve(ct.Ue4_2,ct.Umu4_2,ct.DelM2)]
@@ -29,7 +28,7 @@ ntotalve_noosc = [evcc.ntotalve(0,0,0)]
 print("Configuração: Ue4={0}, Umu4={1} DelM2={2}".format(0,0,0))
 print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
 
-bins = np.arange(lead_min_e, ct.muonmass/2 + 0.01, (ct.muonmass/2 - lead_min_e)/10 )
+bins = np.arange(ct.lead_min_e, ct.muonmass/2 + 0.01, (ct.muonmass/2 - ct.lead_min_e)/10 )
 measured = np.zeros(len(bins) - 1)
 no_osc   = np.zeros(len(bins) - 1)
 
@@ -57,7 +56,11 @@ chi2_gen = chi2_someconfig(0, 0, ct.DelM2)
 
 chi2_values = [ next(chi2_gen) for i in range(1000)]
 
-plt.hist(chi2_values, bins = 50, density=True)
+plt.hist(chi2_values, bins = 50, density=True, label='simulado', color='midnightblue', histtype='stepfilled',alpha=0.4, ec="k")
+plt.title(r'Comparação da distribuição de $\chi^{2}$ teórica com a calculada')
+plt.xlabel(r'Número de graus de liberdade')
+plt.ylabel(r'$\chi^2$')
 x_chi2 = np.linspace(0,100,101)
-plt.plot(x_chi2 ,chi2.pdf(x_chi2,10))
+plt.plot(x_chi2 ,chi2.pdf(x_chi2,10), label='Teórico', color='r')
+plt.legend(prop={'size': 15})
 plt.show()

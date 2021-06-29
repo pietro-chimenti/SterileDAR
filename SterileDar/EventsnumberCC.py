@@ -1,12 +1,11 @@
 #Event numbers for neutrinos and antineutrinos considering charged current process
-import sys
-sys.path.append("..")
+
 from SterileDar import constants as ct
-from SterileDar import Events
+from SterileDar import InteractionSpectrum
 import numpy as np
 import scipy.integrate as integrate
 
-evt = Events.Events()
+evt = InteractionSpectrum.Events()
 Enu = np.arange(ct.energythresholdIBD,ct.muonmass/2,.2)
 EnuPb = np.arange(5,ct.muonmass/2,.2)
 
@@ -15,7 +14,7 @@ lead_min_e = 5
 
 class EventsnumberCC:
     
-    #Considering PPO/Paraffin/LAB (appearance)
+#Considering PPO/Paraffin/LAB (appearance)
     def ntotalvebar(self,Ue4_2,Umu4_2,DelM2):
         return [integrate.quad(lambda Enu: evt.dNdEvebar(Enu,Ue4_2,Umu4_2,DelM2), ct.energythresholdIBD, ct.muonmass/2)]
 

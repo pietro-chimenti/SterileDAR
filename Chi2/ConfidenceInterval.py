@@ -1,7 +1,6 @@
 # This code shows how many times the 'real' value of Ue4^2 is inside the confidence intervals of the simulations
 
 import pandas as pd
-from pandas import DataFrame
 from SterileDar import constants as ct
 import matplotlib.pyplot as plt
 import numpy as np
@@ -28,7 +27,11 @@ plt.rcParams.update({
     "font.sans-serif": ["Helvetica"],
     "font.size": 16})
 
-plt.hist(df['Ue4^2'],bins=20)
+plt.title(r"Histograma de 10000 simulações")
+plt.xlabel(r'Valor de $|U_{e4}|^{2}$')
+plt.ylabel(r'Número de amostras')
+
+plt.hist(df['Ue4^2'],bins=20,color='midnightblue',histtype='stepfilled',alpha=0.4, ec="k")
 plt.show()
 
 # To describe the statistics of the simulation
@@ -41,7 +44,7 @@ ue4 = []
 for k in range(10000):
     ue4.append(df['Ue4^2'].sample(n=k, random_state=1).mean())
 
-plt.plot(ue4, 'r')
+plt.plot(ue4, color='r', linewidth=1.0)
 plt.yticks(np.arange(0.015, 0.022, step=0.0005))
 plt.title(r"Variação da Média de $|U_{e4}|^{2}$")
 plt.xlabel(r'Número de Simulações')
