@@ -12,6 +12,8 @@ print("Gráfico do espectro oscilado dos neutrinos emitidos no DAR do pion+")
 
 
 plt.rcParams.update({
+    "figure.figsize": [8.0,6.0],
+    "figure.dpi": 72.0,
     "text.usetex": True,
     "font.family": "sans-serif",
     "font.sans-serif": ["Helvetica"],

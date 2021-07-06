@@ -15,6 +15,8 @@ spc = DARSpectrum.Spectra()
 
 
 plt.rcParams.update({
+    "figure.figsize": [8.0,6.0],
+    "figure.dpi": 72.0,
     "text.usetex": True,
     "font.family": "sans-serif",
     "font.sans-serif": ["Helvetica"],
@@ -27,10 +29,16 @@ plt.title(r'Espectro dos neutrinos e antineutrinos')
 plt.vlines(30, 0, 1, colors='black', label='Neutrinos Muônicos')
 plt.plot(E,spc.dGdEve(E),'r',label='Neutrinos Eletrônicos')
 plt.plot(E,spc.dGdEvmbar(E),'b',label='Antineutrinos Muônicos')
-plt.ylim((-0.002, max(spc.dGdEvmbar(E))+0.002)) 
-plt.legend(prop={'size': 15})
+plt.ylim((-0.002, max(spc.dGdEvmbar(E))+0.002))
+plt.legend(prop={'size': 15}, loc='upper left')
+textstr = '\n'.join((
+    r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
+    r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2),
+    r'$\Delta m^{{2}}$= {0}eV$^{{2}}$'.format(ct.DelM2)))
+plt.text(-1,0.020,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.grid(True)
 plt.xlabel(r"Energia do (Anti)Neutrino [MeV]")
 plt.ylabel(r"dN/dE [MeV$^{-1}$]")
-#plt.savefig('SpecE.pdf')
-plt.show()
+plt.tight_layout()
+plt.savefig('SpecEDAR.pdf')
+#plt.show()

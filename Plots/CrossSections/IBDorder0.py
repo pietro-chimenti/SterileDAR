@@ -13,6 +13,8 @@ Enu= np.arange(ct.energythresholdIBD,ct.muonmass/2,.5)
 
 
 plt.rcParams.update({
+    "figure.figsize": [8.0,6.0],
+    "figure.dpi": 72.0,
     "text.usetex": True,
     "font.family": "sans-serif",
     "font.sans-serif": ["Helvetica"]})
@@ -21,4 +23,6 @@ plt.plot(Enu,cs.sigmaIBD(Enu),'r')
 plt.grid(True)
 plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r"Seção de choque [m$^{2}$]")
-plt.show()
+plt.tight_layout()
+plt.savefig('CS_IBD_0_order.pdf')
+#plt.show()
