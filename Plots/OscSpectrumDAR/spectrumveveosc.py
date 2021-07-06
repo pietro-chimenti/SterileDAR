@@ -17,6 +17,15 @@ L = ct.Ljsns2 #int(input("Digite um valor para a distância: "))
 
 E = np.arange(10e-20,ct.muonmass/2,0.01)
 
+plt.rcParams.update({
+    "figure.figsize": [8.0,6.0],
+    "figure.dpi": 72.0,
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"],
+    "font.size": 16,
+    "axes.titlepad": 25})
+
 plt.title(r'Espectro dos neutrinos e neutrinos oscilados para L={0}'.format(L))
 plt.plot(E,spc.dGdEve(E),'r',linewidth=1.5,label='Neutrinos do elétron')
 plt.plot(E,oscs.Oscspecve(L,E,ct.Ue4_2,ct.DelM2),'b',linewidth=1.5,label= 'Neutrinos oscilados')

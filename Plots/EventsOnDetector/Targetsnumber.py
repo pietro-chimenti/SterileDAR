@@ -42,4 +42,6 @@ table.scale(1,2)
 ax.axis('off')
 
 plt.title('Número de Átomos no detector', pad=5)
-plt.show()
+plt.tight_layout()
+plt.savefig('TargetsNumber.pdf')
+#plt.show()

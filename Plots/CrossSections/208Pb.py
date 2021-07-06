@@ -25,7 +25,7 @@ plt.rcParams.update({
     "text.usetex": True,
     "font.family": "sans-serif",
     "font.sans-serif": ["Helvetica"]})
-plt.title(u'Seções de choque')
+plt.title(r'Seções de choque $^{208}$Pb')
 plt.plot(E,cs.vee1n,'r',linewidth=1.0,label=r'$\nu_{e}+^{208}$Pb$\rightarrow ^{207}$Bi$+n+e^{-}$')
 plt.plot(E,cs.vee2n,'b',linewidth=1.0,label=r'$\nu_{e}+^{208}$Pb$\rightarrow ^{206}$Bi$+2n+e^{-}$')
 plt.plot(E,cs.veetotal,'g',linewidth=1.0,label=r'$\nu_{e} \rightarrow e^{-}$')
@@ -40,5 +40,6 @@ plt.legend()
 plt.grid(True)
 plt.xlabel(r'Energia do (Anti)Neutrino [MeV]')
 plt.ylabel(r'Seções de choque $[10^{-40} cm^{-2}]$')
-#plt.savefig('SpecE.pdf')
-plt.show()
+plt.tight_layout()
+plt.savefig('CS_208Pb.pdf')
+#plt.show()
