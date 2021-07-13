@@ -37,7 +37,7 @@ plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
 plt.savefig('NuebarIBDSpec.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (charged current electron neutrino)
@@ -55,7 +55,7 @@ plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
 plt.savefig('NueNCPbSpec.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current electron neutrino)
@@ -71,7 +71,7 @@ plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
 plt.savefig('NumuNCPbSpec.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current muon neutrino)
@@ -89,7 +89,7 @@ plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
 plt.savefig('NutauNCPbSpec.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current tau neutrino)
@@ -107,7 +107,7 @@ plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
 plt.savefig('NuebarNCPbSpec.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current electron antineutrino)
@@ -125,7 +125,7 @@ plt.xlabel(r"Energia dos antineutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
 plt.savefig('NumubarNCPbSpec.pdf')
-plt.show()
+plt.close()
 
 #Considering 208Pb (1ton) (neutral current muon antineutrino)
 
@@ -140,7 +140,7 @@ plt.xlabel(r"Energia dos antineutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
 plt.savefig('NutaubarNCPbSpec.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current tau antineutrino)
@@ -158,4 +158,4 @@ plt.xlabel(r"Energia dos antineutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
 #plt.savefig('NutaubarNCDelM2.pdf')
-plt.show()
+plt.close()

@@ -33,7 +33,7 @@ Ut4_2   = 0.01
 rjsns2 = (3.2)/2 #m (JSNS2)
 hjsns2 = 2.5 #m (JSNS2)
 Ljsns2 = 24 #source-detector distance in meters
-estimatedflux = float((1.8e14)*4*np.pi*(2400)**2) #antimuon neutrinos per year jsns2
+estimatednumber = float((1.8e14)*4*np.pi*(2400)**2) #antimuon neutrinos per year jsns2
 
 #EMin Pb data
 lead_min_e = 5

@@ -34,7 +34,7 @@ textstr = '\n'.join((
 plt.text(0.005,1950,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current electron neutrino)
@@ -51,7 +51,7 @@ textstr = '\n'.join((
 plt.text(0.005,102,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current muon neutrino)
@@ -68,7 +68,7 @@ textstr = '\n'.join((
 plt.text(0.005,60.15,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current tau neutrino)
@@ -86,7 +86,7 @@ textstr = '\n'.join((
 plt.text(0.005,0.2,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
-plt.show() 
+plt.close() 
 
 
 #Considering 208Pb (1ton) (neutral current electron antineutrino)
@@ -103,33 +103,8 @@ textstr = '\n'.join((
 plt.text(0.005,0.3,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
-plt.show()
+plt.close()
 
-
-#Considering 208Pb (1ton) (neutral current muon antineutrino)
-
-#Numbervmbarvmbar = [evnc.ntotalvmbarvmbar(ct.Umu4_2,DelM2)
-#          for DelM2 in DelM2]
-
-#plt.plot(DelM2,Numbervmbarvmbar,'r',linewidth=1.0)
-#plt.title(r'Número de Interações de $\bar{\nu}_{\mu}^{(NC)}$ em função de $\Delta m^{2}$')
-#plt.grid(True)
-#plt.xlabel(r"$\Delta m^{2}$ [MeV]")
-#plt.ylabel(r'Número de Interações')
-#plt.show()
-
-
-#Considering 208Pb (1ton) (neutral current tau antineutrino)
-
-#Numbervtbarvtbar = [evnc.ntotalvtbarvtbar(ct.Umu4_2,ct.Ut4_2,DelM2)
-#          for DelM2 in DelM2]
-
-#plt.plot(DelM2,Numbervtbarvtbar,'r',linewidth=1.0)
-#plt.title(r'Número de Interações de $\bar{\nu}_{\tau}^{(NC)}$ em função de $\Delta m^{2}$')
-#plt.grid(True)
-#plt.xlabel(r"$\Delta m^{2}$ [MeV]")
-#plt.ylabel(r'Número de Interações')
-#plt.show()
 
 #Total
 
@@ -147,4 +122,4 @@ textstr = '\n'.join((
 plt.text(0.005,2050,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
-plt.show()
+plt.close()
