@@ -31,11 +31,6 @@ plt.plot(E,spc.dGdEve(E),'r',label='Neutrinos Eletrônicos')
 plt.plot(E,spc.dGdEvmbar(E),'b',label='Antineutrinos Muônicos')
 plt.ylim((-0.002, max(spc.dGdEvmbar(E))+0.002))
 plt.legend(prop={'size': 15}, loc='upper left')
-textstr = '\n'.join((
-    r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
-    r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2),
-    r'$\Delta m^{{2}}$= {0}eV$^{{2}}$'.format(ct.DelM2)))
-plt.text(-1,0.020,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.grid(True)
 plt.xlabel(r"Energia do (Anti)Neutrino [MeV]")
 plt.ylabel(r"dN/dE [MeV$^{-1}$]")

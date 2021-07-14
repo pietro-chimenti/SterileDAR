@@ -37,7 +37,7 @@ plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('NueCCDelM2.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current electron neutrino)
@@ -56,7 +56,7 @@ plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('NueNCDelM2.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current muon neutrino)
@@ -75,7 +75,7 @@ plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('NumuNCDelM2.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current tau neutrino)
@@ -94,7 +94,7 @@ plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('NutauNCDelM2.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current electron antineutrino)
@@ -113,7 +113,7 @@ plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('NuebarNCDelM2.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current muon antineutrino)
@@ -132,7 +132,7 @@ plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('NumubarNCDelM2.pdf')
-plt.show()
+plt.close()
 
 
 #Considering 208Pb (1ton) (neutral current tau antineutrino)
@@ -151,7 +151,7 @@ plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('NutaubarNCDelM2.pdf')
-plt.show()
+plt.close()
 
 #Total
 
@@ -170,4 +170,4 @@ plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('NuTotalDelM2.pdf')
-plt.show()
+plt.close()
