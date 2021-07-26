@@ -36,7 +36,7 @@ plt.text(15,2160,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha 
 plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
-plt.savefig('NueCCDelM2.pdf')
+plt.savefig('DeltaM2/NueCCDelM2.pdf')
 plt.close()
 
 
@@ -55,7 +55,7 @@ plt.text(15,116,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha =
 plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
-plt.savefig('NueNCDelM2.pdf')
+plt.savefig('DeltaM2/NueNCDelM2.pdf')
 plt.close()
 
 
@@ -74,7 +74,7 @@ plt.text(15,63,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 
 plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
-plt.savefig('NumuNCDelM2.pdf')
+plt.savefig('DeltaM2/NumuNCDelM2.pdf')
 plt.close()
 
 
@@ -93,7 +93,7 @@ plt.text(15,0.10,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha 
 plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
-plt.savefig('NutauNCDelM2.pdf')
+plt.savefig('DeltaM2/NutauNCDelM2.pdf')
 plt.close()
 
 
@@ -112,7 +112,7 @@ plt.text(15,0.12,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha 
 plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
-plt.savefig('NuebarNCDelM2.pdf')
+plt.savefig('DeltaM2/NuebarNCDelM2.pdf')
 plt.close()
 
 
@@ -131,7 +131,7 @@ plt.text(15,147,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha =
 plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
-plt.savefig('NumubarNCDelM2.pdf')
+plt.savefig('DeltaM2/NumubarNCDelM2.pdf')
 plt.close()
 
 
@@ -150,7 +150,7 @@ plt.text(15,0.07,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha 
 plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
-plt.savefig('NutaubarNCDelM2.pdf')
+plt.savefig('DeltaM2/NutaubarNCDelM2.pdf')
 plt.close()
 
 #Total
@@ -169,5 +169,5 @@ plt.text(15,2480,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha 
 plt.xlabel(r"$\Delta m^{2}$ [MeV]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
-plt.savefig('NuTotalDelM2.pdf')
+plt.savefig('DeltaM2/NuTotalDelM2.pdf')
 plt.close()
