@@ -12,7 +12,7 @@ delta      = (ct.neutronmass - ct.protonmass)
 y2         = ( delta**2 - ct.electronmass**2 )/2
 deltainner = 0.024
 sigmazero  = ((((ct.planckconstantcut**2)*(ct.lightconstant**2))*((ct.fermiconstant**2) * (ct.coscabibboangle**2))*(1+deltainner))/np.pi)
-Massnp     = 2*((ct.neutronmass + ct.protonmass)/2)
+Massnp     = ((ct.neutronmass + ct.protonmass)/2)
 
 class crosssections:
     def __init__(self, *args, **kwargs):
@@ -34,20 +34,20 @@ class crosssections:
     def vezero(self, Enu):
         return ( np.sqrt((Enu - delta)**2 - ct.electronmass**2) )/(Enu - delta)
     
-    def Ee1(self, Enu, theta):
-        return ((self.Eezero(Enu) * (1 - ( Enu / Massnp )*(1 - self.vezero(Enu) * np.cos(theta)))) - ( y2 / Massnp ))
+    def Ee1(self, Enu, costheta):
+        return ((self.Eezero(Enu) * (1 - ( Enu / Massnp )*(1 - self.vezero(Enu) * costheta))) - ( y2 / Massnp ))
     
-    def pe1(self, Enu,theta):
-        return np.sqrt((self.Ee1(Enu,theta)**2 - ct.electronmass**2))
+    def pe1(self, Enu, costheta):
+        return np.sqrt((self.Ee1(Enu,costheta)**2 - ct.electronmass**2))
     
-    def ve1(self, Enu,theta):
-        return (self.pe1(Enu,theta)) / (self.Ee1(Enu,theta))
+    def ve1(self, Enu,costheta):
+        return (self.pe1(Enu,costheta)) / (self.Ee1(Enu,costheta))
     
-    def GAMA(self, Enu,theta):
-        return 2*( f + f2 ) * g * ((2*self.Eezero(Enu) + delta)*(1 - self.vezero(Enu) * np.cos(theta)) - ((ct.electronmass**2)/self.Eezero(Enu))) + (f**2+g**2)*(((delta)*(1+self.vezero(Enu)*np.cos(theta)))+((ct.electronmass**2)/self.Eezero(Enu))) + ( f**2 + 3*g**2)*((self.Eezero(Enu)+delta)*(1-(np.cos(theta)/self.vezero(Enu)))-(delta)) + (f**2 - g**2)*((self.Eezero(Enu)+delta)*(1 - (np.cos(theta)/self.vezero(Enu)))-(delta))*(self.vezero(Enu)*np.cos(theta))
+    def GAMA(self, Enu,costheta):
+        return 2*( f + f2 ) * g * ((2*self.Eezero(Enu) + delta)*(1 - self.vezero(Enu) * costheta) - ((ct.electronmass**2)/self.Eezero(Enu))) + (f**2+g**2)*(((delta)*(1+self.vezero(Enu)*costheta))+((ct.electronmass**2)/self.Eezero(Enu))) + ( f**2 + 3*g**2)*((self.Eezero(Enu)+delta)*(1-(costheta/self.vezero(Enu)))-(delta)) + (f**2 - g**2)*((self.Eezero(Enu)+delta)*(1 - (costheta/self.vezero(Enu)))-(delta))*(self.vezero(Enu)*costheta)
     
-    def dsigmadcos(self, theta, Enu):
-        return (sigmazero/2 ) * (( f**2 + 3*g**2 ) + ( f**2 - g**2 ) * ( self.ve1(Enu,theta) ) * np.cos(theta) ) * self.Ee1(Enu, theta) * self.pe1(Enu,theta) - (sigmazero/2)*( self.GAMA(Enu,theta) / Massnp )*self.Eezero(Enu)*self.pezero(Enu)
+    def dsigmadcos(self, costheta, Enu):
+        return (sigmazero/2 ) * (( f**2 + 3*g**2 ) + ( f**2 - g**2 ) * ( self.ve1(Enu,costheta) ) * costheta ) * self.Ee1(Enu, costheta) * self.pe1(Enu,costheta) - (sigmazero/2)*( self.GAMA(Enu,costheta) / Massnp )*self.Eezero(Enu)*self.pezero(Enu)
 
 #208Pb CS data based in arXiv:0209267
     E = np.arange(5,100,5) # to interpolate
