@@ -17,6 +17,7 @@ plt.rcParams.update({
     "figure.dpi": 72.0,
     "text.usetex": True,
     "font.family": "sans-serif",
+    "font.size": 16,
     "font.sans-serif": ["Helvetica"]})
 plt.title(u'Seção de choque IBD a ordem zero')
 plt.plot(Enu,cs.sigmaIBD(Enu),'r')

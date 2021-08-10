@@ -34,6 +34,7 @@ textstr = '\n'.join((
 plt.text(0.005,1950,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
+plt.savefig('Ue4_2/NueCCUe4.pdf')
 plt.close()
 
 
@@ -51,6 +52,7 @@ textstr = '\n'.join((
 plt.text(0.005,102,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
+plt.savefig('Ue4_2/NueNCUe4.pdf')
 plt.close()
 
 
@@ -68,6 +70,7 @@ textstr = '\n'.join((
 plt.text(0.005,60.15,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
+plt.savefig('Ue4_2/NumuNCUe4.pdf')
 plt.close()
 
 
@@ -86,6 +89,7 @@ textstr = '\n'.join((
 plt.text(0.005,0.2,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
+plt.savefig('Ue4_2/NutauNCUe4.pdf')
 plt.close() 
 
 
@@ -103,6 +107,7 @@ textstr = '\n'.join((
 plt.text(0.005,0.3,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
+plt.savefig('Ue4_2/NuebarNCUe4.pdf')
 plt.close()
 
 
@@ -122,4 +127,5 @@ textstr = '\n'.join((
 plt.text(0.005,2050,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r"$|U_{e4}|^{2}$")
 plt.ylabel(r'Número de Interações')
+plt.savefig('Ue4_2/NutotalUe4.pdf')
 plt.close()

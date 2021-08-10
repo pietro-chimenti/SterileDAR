@@ -36,7 +36,7 @@ plt.text(1,8,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1)
 plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
-plt.savefig('NuebarIBDSpec.pdf')
+plt.savefig('EnergySpectrumOfNeutrinos/NuebarIBDSpec.pdf')
 plt.close()
 
 
@@ -54,7 +54,7 @@ plt.legend(prop={'size': 15})
 plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
-plt.savefig('NueNCPbSpec.pdf')
+plt.savefig('EnergySpectrumOfNeutrinos/NueCCPbSpec.pdf')
 plt.close()
 
 
@@ -70,7 +70,7 @@ plt.text(4,5,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1)
 plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
-plt.savefig('NumuNCPbSpec.pdf')
+plt.savefig('EnergySpectrumOfNeutrinos/NueNCPbSpec.pdf')
 plt.close()
 
 
@@ -88,7 +88,7 @@ plt.text(4,0.005,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha 
 plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
-plt.savefig('NutauNCPbSpec.pdf')
+plt.savefig('EnergySpectrumOfNeutrinos/NumuNCPbSpec.pdf')
 plt.close()
 
 
@@ -106,7 +106,7 @@ plt.text(4,0.003,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha 
 plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
-plt.savefig('NuebarNCPbSpec.pdf')
+plt.savefig('EnergySpectrumOfNeutrinos/NutauNCPbSpec.pdf')
 plt.close()
 
 
@@ -124,7 +124,7 @@ plt.text(4,0.008,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha 
 plt.xlabel(r"Energia dos antineutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
-plt.savefig('NumubarNCPbSpec.pdf')
+plt.savefig('EnergySpectrumOfNeutrinos/NuebarNCPbSpec.pdf')
 plt.close()
 
 #Considering 208Pb (1ton) (neutral current muon antineutrino)
@@ -139,7 +139,7 @@ plt.text(4,10,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1
 plt.xlabel(r"Energia dos antineutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
-plt.savefig('NutaubarNCPbSpec.pdf')
+plt.savefig('EnergySpectrumOfNeutrinos/NumubarNCPbSpec.pdf')
 plt.close()
 
 
@@ -157,5 +157,5 @@ plt.text(4,0.004,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha 
 plt.xlabel(r"Energia dos antineutrinos [MeV]")
 plt.ylabel(r'dN/dE [MeV$^{-1}$]')
 plt.tight_layout()
-#plt.savefig('NutaubarNCDelM2.pdf')
+plt.savefig('EnergySpectrumOfNeutrinos/NutaubarNCPbSpec.pdf')
 plt.close()

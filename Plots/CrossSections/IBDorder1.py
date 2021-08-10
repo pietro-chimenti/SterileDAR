@@ -13,7 +13,7 @@ cs=crosssections.crosssections()
 int_err = 0.01
 Enu     = np.arange(ct.energythresholdIBD , ct.muonmass/2, 0.5)
 
-result = [integrate.quad(lambda theta: cs.dsigmadcos(theta,Enu), 0, 2*np.pi, epsabs=int_err)
+result = [integrate.quad(lambda costheta: cs.dsigmadcos(costheta,Enu), -1, 1, epsabs=int_err)
           for Enu in np.arange(ct.energythresholdIBD, ct.muonmass/2, .5)]
 
 plot = []
@@ -28,6 +28,7 @@ plt.rcParams.update({
     "figure.dpi": 72.0,
     "text.usetex": True,
     "font.family": "sans-serif",
+    "font.size": 16,
     "font.sans-serif": ["Helvetica"]})
 plt.title(u'Seção de choque IBD a primeira ordem')
 plt.plot(Enu, plot, 'r')

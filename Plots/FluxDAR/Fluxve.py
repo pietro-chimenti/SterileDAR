@@ -9,6 +9,7 @@ from SterileDar import constants as ct
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 import numpy as np
+from textwrap3 import wrap
 
 spc = DARSpectrum.Spectra()
 model = OscillationModel.OscillationModel()
@@ -35,15 +36,15 @@ E = np.arange(10e-15,ct.muonmass/2,0.01)
 
 
 plt.plot(E,flx.Fluxve(L,E,ct.Ue4_2,ct.DelM2),'r',linewidth=1.0)
-plt.vlines(ct.NuMuenergy, (flx.Fluxve(L,ct.NuMuenergy,ct.Ue4_2,ct.DelM2)), (flx.Fluxve(L,ct.NuMuenergy,ct.Ue4_2,ct.DelM2) + flx.nvevmu), colors='red')
-
+plt.vlines(ct.NuMuenergy, 0, flx.nvevmu, colors='blue', label='\n'.join(wrap(r'{0:.2e} neutrinos do decaimento de dois corpos'.format(flx.nvevmu),25)))
+plt.legend(loc='upper left')
 plt.title(r'Fluxo de neutrinos do elétron por energia emitidos para L={0}m'.format(L))
 plt.grid(True)
 textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
     r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2),
     r'$\Delta m^{{2}}$= {0}eV$^{{2}}$'.format(ct.DelM2)))
-plt.text(2,4.3e16,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
+plt.text(-1.2,3.5e16,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r'Energia dos neutrinos [MeV]')
 plt.ylabel(r' $\frac{N}{4 \pi L^{2} } \frac{dN}{dE}$ [$\nu$ MeV$^{-1}$m$^{-2}$]')
 plt.tight_layout()
