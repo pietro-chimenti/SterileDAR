@@ -8,6 +8,28 @@ data = (float(input("Insira uma medida inteira positiva:  ")))
 
 k = np.arange(data-12,data+12,1)
 
+#Plotting
+
+step = 0.01
+param_points     = np.arange(0+step,100+step, step)
+min_value_points = [ st.poisson.ppf(1-(1+confidence)/2, mu=val) for val in param_points ]
+max_value_points = [ st.poisson.ppf(1-(1-confidence)/2, mu=val) for val in param_points ]
+
+confidence_points = []
+for i in range(len(param_points)):
+    if min_value_points[i] < data and max_value_points[i] > data:
+        confidence_points.append(param_points[i])
+
+dots_x = np.ones(len(confidence_points))*data
+dots_y = np.array(confidence_points)
+
+plt.plot(max_value_points, param_points, color = 'blue')
+plt.plot(min_value_points, param_points, color = 'red')
+plt.plot(dots_x,dots_y,'ro')
+plt.show()
+
+print("Para uma medida de {0}, Os limites de confiança são {1} e {2}".format(data,dots_y[0],dots_y[-1]))
+
 
 #Calcutation
 
