@@ -57,4 +57,3 @@ plt.plot(data,0,'bo')
 
 
 plt.show()
-
