@@ -58,6 +58,7 @@ print("Número total de interações de antineutrinos do tau em um ano por corre
 fig = plt.figure(dpi=125)
 ax = fig.add_subplot(1,1,1)
 table_data=[
+    [r"$\bar{\nu}_{e}^{(IBD)}$", "{0}".format(np.round(cc.ntotalvebar(ct.Ue4_2,ct.Umu4_2,ct.DelM2), 2))],
     [r"$\nu_{e}^{(CC)}$", "{0}".format(np.round(cc.ntotalve(ct.Ue4_2,ct.Umu4_2,ct.DelM2), 2))],
     [r"$\nu_{e}^{(NC)}$", "{0}".format(np.round(nc.ntotalveve(ct.Ue4_2,ct.Umu4_2,ct.DelM2),2))],
     [r"$\nu_{\mu}^{(NC)}$", "{0}".format(np.round(nc.ntotalvmvm(ct.Ue4_2,ct.Umu4_2,ct.DelM2),2))],
@@ -65,7 +66,7 @@ table_data=[
     [r"$\bar{\nu}_{e}^{(NC)}$", "{0}".format(np.round(nc.ntotalvebarvebar(ct.Ue4_2,ct.Umu4_2,ct.DelM2),2))],
     [r"$\bar{\nu}_{\mu}^{(NC)}$", "{0}".format(np.round(nc.ntotalvmbarvmbar(ct.Umu4_2,ct.DelM2),2))],
     [r"$\bar{\nu}_{\tau}^{(NC)}$", "{0}".format(np.round(nc.ntotalvtbarvtbar(ct.Umu4_2,ct.Ut4_2,ct.DelM2),2))],
-     [r"Total", "{0}".format(np.round((cc.ntotalve(ct.Ue4_2,ct.Umu4_2,ct.DelM2) + nc.ntotalveve(ct.Ue4_2,ct.Umu4_2,ct.DelM2) 
+     [r"Total (CC e NC)", "{0}".format(np.round((cc.ntotalve(ct.Ue4_2,ct.Umu4_2,ct.DelM2) + nc.ntotalveve(ct.Ue4_2,ct.Umu4_2,ct.DelM2) 
                                        + nc.ntotalvmvm(ct.Ue4_2,ct.Umu4_2,ct.DelM2) + nc.ntotalvtvt(ct.Ue4_2,ct.Umu4_2,ct.Ut4_2,ct.DelM2) 
                                        + nc.ntotalvebarvebar(ct.Ue4_2,ct.Umu4_2,ct.DelM2) + nc.ntotalvmbarvmbar(ct.Umu4_2,ct.DelM2) 
                                        + nc.ntotalvtbarvtbar(ct.Umu4_2,ct.Ut4_2,ct.DelM2)),2))]

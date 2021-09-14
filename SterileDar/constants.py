@@ -19,7 +19,7 @@ mol = 6.02e23
 energythresholdIBD = 1.807 #MeV
 meter2tocm2 = 1e+4
 cm2tometer2 = 1e-4
-NuMuenergy = 30 #MeV
+NuMuenergy = 29.8 #MeV
 MeVtoJoule = 1.60218e-13 #Joule
 neutrinoprobabilityconstant = 1.267
 

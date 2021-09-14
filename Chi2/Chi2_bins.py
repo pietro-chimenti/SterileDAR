@@ -93,41 +93,44 @@ plt.hist(bins[:-1], bins, weights=integral_noosc, color='salmon', label='no osc'
 plt.plot((bins[1:]+bins[:-1])/2,samples_noosc,"*", color='red', label='no osc sample')
 plt.hist(bins[:-1], bins, weights=integral_osc, color='skyblue', label='best fit' )
 plt.plot((bins[1:]+bins[:-1])/2,samples_osc,"*", color='blue', label='osc sample')
-plt.title(r'Histograma do número esperado de interações com $^{208}$Pb')
+plt.title(r'Histograma do número esperado de interações $\nu_{e}$ com $^{208}$Pb')
 plt.xlabel(r'Energia [MeV]')
 plt.ylabel(r'Número Esperado de Interações')
 plt.legend(loc=2, shadow=True)
-plt.show()
+plt.savefig('NUebins208Pb.pdf')
+#plt.show()
 
 
 
 ######################################### PLOT CHI2 ############################################
 
-delta1 = 0.02
-delta2 = 0.02
-log_delm2    = np.arange(-1, 1., delta1)
-log_sin22t   = np.arange(-2, 0., delta2)
-delm2  = 10**log_delm2
-sin22t = 10**log_sin22t
-
-X, Y = np.meshgrid(delm2, sin22t)
-ue4_2    = (1.-np.sqrt(1-Y))/2.
-
-Z = vchi2_someconfig(ue4_2,X)
-
-
-
-
-fig, ax = plt.subplots()
-ax.set_xscale("log") 
-ax.set_yscale("log") 
-CS = ax.contour(Y, X, Z, levels = [1.,9.,25.] )
-ax.clabel(CS, inline=1, fontsize=10)
-ax.set_title(r'Sensitivity plot $\nu_e$ disappearence - Chi$^2$')
-ax.set_xlabel(r'$sin^2 2\theta$')
-ax.set_ylabel(r'$\Delta m^2$')
-ax.scatter( (4*0.019*(1-0.019))  , 1.7 , c="red")
-plt.grid(True)
-plt.xlim([0.01,1])
-plt.ylim([0.1,10])
-plt.show()
+# =============================================================================
+# delta1 = 0.02
+# delta2 = 0.02
+# log_delm2    = np.arange(-1, 1., delta1)
+# log_sin22t   = np.arange(-2, 0., delta2)
+# delm2  = 10**log_delm2
+# sin22t = 10**log_sin22t
+# 
+# X, Y = np.meshgrid(delm2, sin22t)
+# ue4_2    = (1.-np.sqrt(1-Y))/2.
+# 
+# Z = vchi2_someconfig(ue4_2,X)
+# 
+# 
+# 
+# 
+# fig, ax = plt.subplots()
+# ax.set_xscale("log") 
+# ax.set_yscale("log") 
+# CS = ax.contour(Y, X, Z, levels = [1.,9.,25.] )
+# ax.clabel(CS, inline=1, fontsize=10)
+# ax.set_title(r'Sensitivity plot $\nu_e$ disappearence - Chi$^2$')
+# ax.set_xlabel(r'$sin^2 2\theta$')
+# ax.set_ylabel(r'$\Delta m^2$')
+# ax.scatter( (4*0.019*(1-0.019))  , 1.7 , c="red")
+# plt.grid(True)
+# plt.xlim([0.01,1])
+# plt.ylim([0.1,10])
+# plt.show()
+# =============================================================================

@@ -16,7 +16,7 @@ class EventsnumberCC:
     
 #Considering PPO/Paraffin/LAB (appearance)
     def ntotalvebar(self,Ue4_2,Umu4_2,DelM2):
-        return [integrate.quad(lambda Enu: evt.dNdEvebar(Enu,Ue4_2,Umu4_2,DelM2), ct.energythresholdIBD, ct.muonmass/2)]
+        return [integrate.quad(lambda Enu: evt.dNdEvebar(Enu,Ue4_2,Umu4_2,DelM2), ct.energythresholdIBD, ct.muonmass/2)][0][0]
 
 
 #Considering 208Pb (1ton) (desappearance) (charged current)
