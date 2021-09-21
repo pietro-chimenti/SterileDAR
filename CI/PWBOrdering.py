@@ -5,6 +5,8 @@ import pandas as pd
 
 def PWB(mu,b,n):
     return ((mu+b)**n)*((np.exp(-(mu+b)))/math.factorial(n))
+
+MU = float(input("Digite um valor para mu com uma precisão de 0.05  "))
     
 dataplot = []
 for mu in np.arange(0,16,0.05):
@@ -15,6 +17,7 @@ for mu in np.arange(0,16,0.05):
     Pnmu = []
     Pnmubest = []
     R = []
+
     for n in np.arange(0,40,1):
         Pnmu.append(round(PWB(mu,b,n),5))
         muvalues=[]
@@ -54,6 +57,7 @@ x0_plot=list(dfplot["nmin"])
 x1_plot=list(dfplot["nmax"])
 y_plot =list(dfplot["mu"])
 
+values = dfplot.loc[dfplot["mu"] == MU].values.tolist()
 
 fig = plt.figure()
 ax = fig.gca()
@@ -61,9 +65,15 @@ ax = fig.add_subplot(111)
 ax.set_aspect(1)
 ax.set_xticks(np.arange(0, 15, 1))
 ax.set_yticks(np.arange(0, 15, 1))
+plt.xlabel('Measured n')
+plt.ylabel(r'Signal Mean $\mu$')
+x1, x2 = values[0][0], values[0][1]
+y1, y2 = values[0][2], values[0][2]
+plt.plot([x1, x2], [y1, y2], 'r')
 plt.plot(x0_plot,y_plot)
 plt.plot(x1_plot,y_plot)
 plt.xlim(0, 15)
 plt.ylim(0, 15)
 plt.grid()
 plt.show()
+print("Para o valor mu = {0}, os limites de confiança são {1} e {2}".format(MU,x1,x2 ))
