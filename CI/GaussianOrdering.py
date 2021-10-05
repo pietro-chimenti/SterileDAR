@@ -2,74 +2,41 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 import pandas as pd
+from scipy import optimize
+import scipy.integrate as integrate
 
-def Gaussian(mu,x):
+def Gaussian(x,mu):
     return (1/np.sqrt(2*np.pi)) * np.exp(-(((x-mu)**2)/2))
 
-def Rxn(mu,x):
-    return np.exp(x*mu - (mu**2)/2)
+def R(x,mu):
+    if x < 0:
+        return np.exp(x*mu - (mu**2)/2)
+    else:
+        return np.exp(-(((x-mu)**2)/2))
 
-def Rxp(mu,x):
-    return np.exp(-(((x-mu)**2)/2))
+def R_r(x,mu,r):
+    return R(x,mu) - r
 
-def Pxmubestneg(x):
-    return np.exp((-x**2)/2)/np.sqrt(2*np.pi)
-
-Pxmubestpos = (1/(np.sqrt(2*np.pi)))
+def residualconfidence(r, alpha, mu):
+    root_plus = optimize.bisect(R_r, mu, 10000, args=(mu, r, ))
+    root_minus = optimize.bisect(R_r, -10000, mu, args=(mu, r, ))
+    return integrate.quad(lambda x: Gaussian(x,mu), root_minus, root_plus)[0] - alpha
     
-dataplot = []
-for mu in np.arange(0,15,0.1):
-    CL = 0.9
-    data = []
-    mubest=[]
-    Pnmu = []
-    Pnmubest = []
-    R = []
+list_minus = []
+list_plus = []
 
-    i=0
+for mu in np.arange(0.001,6,0.1):
+    alpha = 0.9
+    
+    r = optimize.bisect(residualconfidence, 0.0001, 0.9999, args=(alpha,mu, ))
+    
+    root_plus = optimize.bisect(R_r, mu, 10000, args=(mu, r, ))
+    root_minus = optimize.bisect(R_r, -10000, mu, args=(mu, r, ))
+    
+    list_minus.append(root_minus)
+    list_plus.append(root_plus)
 
-    for x in np.arange(-10,10,1):
-        Pnmu.append(round(Gaussian(mu,x),5))        
-        
-        if x < 0:
-            Pnmubest.append(round(Pxmubestneg(x),4))
-            R.append(round(Rxn(mu, x),3))
-             
-        else :
-            Pnmubest.append(round(Pxmubestpos,4))
-            R.append(round(Rxp(mu, x),3))
-
-            
-        data.append([x,Pnmu[i],Pnmubest[i],R[i]])
-        i+=1
-        
-        
-    df=pd.DataFrame(data,columns=["x","Pnmu","Pnmubest","R"])
-    
-    df.sort_values("R",ascending=False,inplace=True)
-    
-    soma = []
-    Measuredx = []
-    
-    for m,j in zip(df['x'],df['Pnmu']):
-        soma.append(j)
-        Measuredx.append(m)
-        if sum(soma) >= CL:
-            break
-    
-    CLreal = sum(soma)
-    
-    xmin = min(Measuredx)
-    xmax = max(Measuredx)
-    
-    dataplot.append([xmin,xmax,mu])
-
-dfplot=pd.DataFrame(dataplot,columns=["xmin","xmax","mu"])
-
-x0_plot=list(dfplot["xmin"])
-x1_plot=list(dfplot["xmax"])
-y_plot =list(dfplot["mu"])
-
+mu = np.arange(0.001,6,0.1)
 
 fig = plt.figure()
 ax = fig.gca()
@@ -77,9 +44,13 @@ ax = fig.add_subplot(111)
 ax.set_aspect(1)
 ax.set_xticks(np.arange(-3, 5, 1))
 ax.set_yticks(np.arange(-1, 7, 1))
-plt.plot(x0_plot,y_plot)
-plt.plot(x1_plot,y_plot)
+plt.xlabel('Measured Mean x')
+plt.ylabel(r'Mean $\mu$')
+
+plt.plot(list_minus,mu)
+plt.plot(list_plus,mu)
 plt.xlim(-2, 4)
 plt.ylim(0, 6)
 plt.grid()
 plt.show()
+
