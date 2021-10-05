@@ -26,7 +26,7 @@ E = np.arange(0,ct.muonmass/2,0.01)
 
 
 plt.title(r'Espectro dos neutrinos e antineutrinos')
-plt.vlines(30, 0, 1, colors='black', label='Neutrinos Muônicos')
+plt.vlines(ct.NuMuenergy, 0, 1, colors='black', label='Neutrinos Muônicos')
 plt.plot(E,spc.dGdEve(E),'r',label='Neutrinos Eletrônicos')
 plt.plot(E,spc.dGdEvmbar(E),'b',label='Antineutrinos Muônicos')
 plt.ylim((-0.002, max(spc.dGdEvmbar(E))+0.002))

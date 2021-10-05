@@ -39,7 +39,7 @@ plt.plot(E,cs.vbarvbartotal,'darkgrey',linewidth=1.0,label=r'$\bar{\nu_{x}} \rig
 plt.legend()
 plt.grid(True)
 plt.xlabel(r'Energia do (Anti)Neutrino [MeV]')
-plt.ylabel(r'Seções de choque $[10^{-40} cm^{-2}]$')
+plt.ylabel(r'Seções de choque $[10^{-40} cm^{2}]$')
 plt.tight_layout()
 plt.savefig('CS_208Pb.pdf')
 #plt.show()

@@ -35,7 +35,7 @@ for sample in range(numberofsamples):
 
     confidence_points = []
     for i in range(len(param_points)):
-        if min_value_points[i] < simulatedparameter and max_value_points[i] > simulatedparameter:
+        if min_value_points[i] <= simulatedparameter and max_value_points[i] >= simulatedparameter:
             confidence_points.append(param_points[i])
 
     dots_x = np.ones(len(confidence_points))*simulatedparameter

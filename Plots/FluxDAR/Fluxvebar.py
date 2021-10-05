@@ -17,7 +17,7 @@ numberperyear = [integrate.quad(lambda Enu: flx.Fluxvebar(ct.Ljsns2,Enu,ct.Ue4_2
 print(r"Número total de antineutrinos do elétron em um ano por metro quadrado: {:e}".format(numberperyear[0][0]))
 
 plt.rcParams.update({
-    "figure.figsize": [8.0,6.0],
+    "figure.figsize": [8.5,6.0],
     "figure.dpi": 72.0,
     "text.usetex": True,
     "font.family": "sans-serif",
