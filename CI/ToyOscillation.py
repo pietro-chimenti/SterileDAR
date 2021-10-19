@@ -7,7 +7,9 @@ Created on Tue Oct  5 13:30:04 2021
 """
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import poisson
 import scipy.integrate as integrate
+from scipy.optimize import minimize
 
 # Here we define initial constants
 class CommonConstants():
@@ -15,12 +17,11 @@ class CommonConstants():
     Emax = 10
     L = 1
     Bins = 8
-    Bins_limits = [2,3,4,5,6,7,8,9,10]
+    Bins_limits = np.array([2,3,4,5,6,7,8,9,10])
 
     def __init__(self):
         pass
 cc = CommonConstants()
-print(cc.E0)
 
 def InitSpectrum(E):
     """ This function describe the initial unoscillated neutrino spectrum. 
@@ -53,14 +54,31 @@ def Spectrum(E, L, DelM2, S22t):
 def BinsMean(DelM2, S22t):
     """ This function calculate the expected stectrum in all bins """
     func = lambda x: Spectrum(x, cc.L, DelM2, S22t)
-    means = [integrate.quad(func,cc.Bins_limits[i],cc.Bins_limits[i+1])[0] for i in range(cc.Bins) ]
+    means = np.array([integrate.quad(func,cc.Bins_limits[i],cc.Bins_limits[i+1], epsabs=1e-5)[0] for i in range(cc.Bins) ])
     return means
+
+def RandomSample(DelM2, S22t):
+    sample = np.array([ np.random.poisson(i)  for i in BinsMean(DelM2,S22t)])
+    return sample
+
+def LogLikelihood(pars, data):
+    DelM2 = pars[0]
+    S22t  = pars[1]
+    means  = BinsMean(DelM2, S22t)
+    binsLogLike = np.array([ -2.*(np.log(poisson.pmf(data[i],means[i]))) for i in np.arange(len(data)) ] )
+    ll = sum(binsLogLike)
+    return ll
+
+def R(DelM2, S22t, data):
+    bnds = ((0.1, 10), (0, 1))
+    BestParams = minimize(LogLikelihood,(DelM2,S22t),args=(sample,),method='TNC', bounds=bnds, tol=1e-5).x
+    R = LogLikelihood((DelM2,S22t),data)/LogLikelihood(BestParams,data)
+    return R
 
 DelM2 = 1
 E = 2
 S22t = 0.5
 
-print(round(InitSpectrum(E),3), round(OscProb(E,cc.L,DelM2,S22t),3), round(CrossSect(E),3))
 
 x_vals     = np.arange(cc.E0,10.,0.1)
 y_vals     = Spectrum(x_vals, cc.L, DelM2, 0)    # no oscillation
@@ -69,12 +87,29 @@ plt.plot(x_vals,y_vals)
 plt.plot(x_vals,y_vals_osc)
 plt.plot(x_vals,1000*InitSpectrum(x_vals))
 plt.plot(x_vals,10*CrossSect(x_vals))
-plt.show()
+#plt.show()
+plt.clf()
 
 plt.hist(cc.Bins_limits[:-1],bins = cc.Bins_limits, weights = BinsMean(DelM2,0))
+plt.plot((cc.Bins_limits[:-1]+cc.Bins_limits[1:])/2, RandomSample(DelM2,0),'o')
 plt.hist(cc.Bins_limits[:-1],bins = cc.Bins_limits, weights = BinsMean(DelM2,S22t))
+plt.plot((cc.Bins_limits[:-1]+cc.Bins_limits[1:])/2, RandomSample(DelM2,S22t),'*')
+#plt.show()
+plt.clf()
+
+nsamples = 100
+r_vals = np.zeros(nsamples)
+for i in np.arange(nsamples):
+    sample = RandomSample(DelM2, S22t)
+    r_vals[i] = R(DelM2,S22t,sample)
+    
+plt.hist(r_vals,bins = np.arange(1,1.2+0.01,0.01))
 plt.show()
 
-print(sum(y_vals)*0.1)
-
-
+#print(R(DelM2,S22t,sample))
+# parameter values
+# DelM2    S22t
+#  1         0
+#  1         1
+#  0.1       1
+#  10        1
