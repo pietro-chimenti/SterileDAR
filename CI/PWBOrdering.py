@@ -2,15 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 import pandas as pd
+from textwrap3 import wrap
 
 def PWB(mu,b,n):
     return ((mu+b)**n)*((np.exp(-(mu+b)))/math.factorial(n))
 
-N = float(input("Digite um valor para N inteiro:  "))
+N = int(input("Digite um valor para N inteiro:  "))
 
 dataplot = []
 for mu in np.arange(0,16,0.05):
-    b  = 3.0
+    b  = 1.7
     CL = 0.9
     data = []
     mubest=[]
@@ -64,6 +65,15 @@ for index, row in dfplot.iterrows():
     else:
         pass
 
+#Plot
+plt.rcParams.update({
+    "figure.figsize": [6.0,7.0],
+    "figure.dpi": 72.0,
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"],
+    "font.size": 16,
+    "axes.titlepad": 25})
 
 fig = plt.figure()
 ax = fig.gca()
@@ -71,18 +81,21 @@ ax = fig.add_subplot(111)
 ax.set_aspect(1)
 ax.set_xticks(np.arange(0, 15, 1))
 ax.set_yticks(np.arange(0, 15, 1))
-plt.xlabel('Measured n')
-plt.ylabel(r'Signal Mean $\mu$')
+plt.xlabel('n medido')
+plt.ylabel(r'$\mu$')
 
 x1, x2 = N, N
 y1, y2 = min(MU), max(MU)
-plt.plot([x1, x2], [y1, y2], 'r')
+plt.plot([x1, x2], [y1, y2], 'blue',label='\n'.join(wrap('Representação do intervalo para uma medida de n={0}'.format(N),20)))
 
-plt.plot(x0_plot,y_plot)
-plt.plot(x1_plot,y_plot)
+plt.plot(x0_plot,y_plot,'r')
+plt.plot(x1_plot,y_plot,'r')
 plt.xlim(0, 15)
 plt.ylim(0, 15)
 plt.grid()
+plt.title('\n'.join(wrap(r'Intervalos de Confiança para medidas de Poisson com background médio b={0}'.format(b),50)))
+plt.legend(loc=2)
+plt.savefig('FCPoisson.pdf')
 plt.show()
 
 print("Para o valor N = {0}, os limites de confiança são {1} e {2}".format(N,y1,y2 ))
