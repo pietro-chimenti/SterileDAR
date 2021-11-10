@@ -14,9 +14,14 @@ lead_min_e = 5
 
 class EventsnumberCC:
     
-#Considering PPO/Paraffin/LAB (appearance)
+#Considering PPO/Paraffin/LAB (appearance IBD zero order)
     def ntotalvebar(self,Ue4_2,Umu4_2,DelM2):
         return [integrate.quad(lambda Enu: evt.dNdEvebar(Enu,Ue4_2,Umu4_2,DelM2), ct.energythresholdIBD, ct.muonmass/2)][0][0]
+
+
+#Considering PPO/Paraffin/LAB (appearance IBD first order)
+    def ntotalvebaribd1(self,Ue4_2,Umu4_2,DelM2):
+        return [integrate.quad(lambda Enu: evt.dNdEvebar1order(Enu,Ue4_2,Umu4_2,DelM2), ct.energythresholdIBD, ct.muonmass/2)][0][0]
 
 
 #Considering 208Pb (1ton) (desappearance) (charged current)

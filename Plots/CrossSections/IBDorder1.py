@@ -7,21 +7,13 @@ import numpy as np
 import scipy.integrate as integrate
 import matplotlib.pyplot as plt
 import matplotlib.font_manager
+from scipy.interpolate import interp1d
 
 cs=crosssections.crosssections()
+csibd1=crosssections.IBDfirstorder()
 
-int_err = 0.01
-Enu     = np.arange(ct.energythresholdIBD , ct.muonmass/2, 0.5)
 
-result = [integrate.quad(lambda costheta: cs.dsigmadcos(costheta,Enu), -1, 1, epsabs=int_err)
-          for Enu in np.arange(ct.energythresholdIBD, ct.muonmass/2, .5)]
-
-plot = []
-for i in result:
-    plot.append(i[0])
-
-plt.show()
-
+Enu = np.arange(ct.energythresholdIBD , ct.muonmass/2, 0.05)
 
 plt.rcParams.update({
     "figure.figsize": [8.0,6.0],
@@ -31,10 +23,28 @@ plt.rcParams.update({
     "font.size": 16,
     "font.sans-serif": ["Helvetica"]})
 plt.title(u'Seção de choque IBD a primeira ordem')
-plt.plot(Enu, plot, 'r')
+#plt.plot(Enu, plot, 'r')
+plt.plot(Enu, csibd1.sigmaIBDorder1(Enu), 'b')
 plt.grid(True)
 plt.xlabel(r"Energia dos neutrinos [MeV]")
 plt.ylabel(r"Seção de choque [m$^{2}$]")
 plt.tight_layout()
-plt.savefig('CS_IBD_1_order.pdf')
-#plt.show()
+#plt.savefig('CS_IBD_1_order.pdf')
+plt.show()
+
+######################################### NTOTAL IBD FIRST ORDER CALCULATION ###########################################
+
+from SterileDar import expdata as exp
+from SterileDar import Oscspec
+
+osc = Oscspec.Oscspec()
+
+nproton = float(exp.hidrogeniototal) #number of protons at the detector
+
+
+
+
+
+
+    
+print(ntotalvebaribd1(ct.Ue4_2,ct.Umu4_2,ct.DelM2))

@@ -3,6 +3,7 @@
 from SterileDar import constants as ct
 import numpy as np
 from scipy.interpolate import interp1d
+import scipy.integrate as integrate
 
 #Necessary constants IBDcs calculation
 f          = 1
@@ -12,18 +13,18 @@ delta      = (ct.neutronmass - ct.protonmass)
 y2         = ( delta**2 - ct.electronmass**2 )/2
 deltainner = 0.024
 sigmazero  = ((((ct.planckconstantcut**2)*(ct.lightconstant**2))*((ct.fermiconstant**2) * (ct.coscabibboangle**2))*(1+deltainner))/np.pi)
-Massnp     = ((ct.neutronmass + ct.protonmass)/2)
+Massnp     = ct.protonmass
 
 class crosssections:
     def __init__(self, *args, **kwargs):
         # you can add additional code here if needed
         pass
 
-#IBD cross section at zeroth order arxiv:9903554 equation (10)
+#IBD cross section at zeroth order arxiv:9903554 equation (9)
     def sigmaIBD(self,Enu):#Cross section IBD Simple cm^2
         return (sigmazero*(f**2+3*g**2)*(Enu - delta)*(np.sqrt((Enu - delta)**2 - ct.electronmass**2))) #m^2
     
-#IBD cross section at first order arxiv:9903554 equation (14)
+#IBD cross section at first order arxiv:9903554 equation (12)
 
     def Eezero(self, Enu):
         return (Enu - delta)
@@ -49,6 +50,7 @@ class crosssections:
     def dsigmadcos(self, costheta, Enu):
         return (sigmazero/2 ) * (( f**2 + 3*g**2 ) + ( f**2 - g**2 ) * ( self.ve1(Enu,costheta) ) * costheta ) * self.Ee1(Enu, costheta) * self.pe1(Enu,costheta) - (sigmazero/2)*( self.GAMA(Enu,costheta) / Massnp )*self.Eezero(Enu)*self.pezero(Enu)
 
+    
 #208Pb CS data based in arXiv:0209267
     E = np.arange(5,100,5) # to interpolate
     
@@ -81,3 +83,19 @@ class crosssections:
     vbarvbartotal40 = [i*1e-40 for i in vbarvbartotal]
     
     sigmaPbvbarvbar = interp1d(E, vbarvbartotal40)  #interpolated CS neutrino (NC interaction) [cm^2]
+    
+    
+cs = crosssections()
+int_error = 0.02
+class IBDfirstorder:
+
+    Energyibd     = np.arange(ct.energythresholdIBD , ct.muonmass/2, 0.05)
+    
+    result = [integrate.quad(lambda costheta: cs.dsigmadcos(costheta,Energyibd), -1, 1, epsabs=int_error)
+              for Energyibd in np.arange(ct.energythresholdIBD, ct.muonmass/2, 0.05)]
+    
+    values = []
+    for i in result:
+        values.append(i[0])
+    
+    sigmaIBDorder1 = interp1d(Energyibd, values)

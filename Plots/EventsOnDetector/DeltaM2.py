@@ -33,7 +33,7 @@ textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
     r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2)))
 plt.text(15,2160,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
-plt.xlabel(r"$\Delta m^{2}$ [MeV$^{2}$]")
+plt.xlabel(r"$\Delta m^{2}$ [eV$^{2}$]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('DeltaM2/NueCCDelM2.pdf')
@@ -52,7 +52,7 @@ textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
     r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2)))
 plt.text(15,116,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
-plt.xlabel(r"$\Delta m^{2}$ [MeV$^{2}$]")
+plt.xlabel(r"$\Delta m^{2}$ [eV$^{2}$]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('DeltaM2/NueNCDelM2.pdf')
@@ -71,7 +71,7 @@ textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
     r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2)))
 plt.text(15,63,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
-plt.xlabel(r"$\Delta m^{2}$ [MeV$^{2}$]")
+plt.xlabel(r"$\Delta m^{2}$ [eV$^{2}$]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('DeltaM2/NumuNCDelM2.pdf')
@@ -90,7 +90,7 @@ textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
     r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2)))
 plt.text(15,0.10,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
-plt.xlabel(r"$\Delta m^{2}$ [MeV$^{2}$]")
+plt.xlabel(r"$\Delta m^{2}$ [eV$^{2}$]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('DeltaM2/NutauNCDelM2.pdf')
@@ -109,7 +109,7 @@ textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
     r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2)))
 plt.text(15,0.12,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
-plt.xlabel(r"$\Delta m^{2}$ [MeV$^{2}$]")
+plt.xlabel(r"$\Delta m^{2}$ [eV$^{2}$]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('DeltaM2/NuebarNCDelM2.pdf')
@@ -128,7 +128,7 @@ textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
     r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2)))
 plt.text(15,147,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
-plt.xlabel(r"$\Delta m^{2}$ [MeV$^{2}$]")
+plt.xlabel(r"$\Delta m^{2}$ [eV$^{2}$]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('DeltaM2/NumubarNCDelM2.pdf')
@@ -147,7 +147,7 @@ textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
     r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2)))
 plt.text(15,0.07,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
-plt.xlabel(r"$\Delta m^{2}$ [MeV$^{2}$]")
+plt.xlabel(r"$\Delta m^{2}$ [eV$^{2}$]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('DeltaM2/NutaubarNCDelM2.pdf')
@@ -157,16 +157,16 @@ plt.close()
 
 zipped_lists = zip(Numberve, Numberveve, Numbervmvm, Numbervtvt, Numbervebarvebar, Numbervmbarvmbar, Numbervtbarvtbar)
 
-sum = [x1 + x2 + x3 + x4 + x5 + x6 + x7 for (x1, x2, x3, x4, x5, x6, x7) in zipped_lists]
+soma = [x1 + x2 + x3 + x4 + x5 + x6 + x7 for (x1, x2, x3, x4, x5, x6, x7) in zipped_lists]
 
-plt.plot(DelM2,sum,'r',linewidth=1.0)
+plt.plot(DelM2,soma,'r',linewidth=1.0)
 plt.title(r'Número total de Interações de $\nu$ em função de $\Delta m^{2}$')
 plt.grid(True)
 textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
     r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2)))
 plt.text(15,2480,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
-plt.xlabel(r"$\Delta m^{2}$ [MeV$^{2}$]")
+plt.xlabel(r"$\Delta m^{2}$ [eV$^{2}$]")
 plt.ylabel(r'Número de Interações')
 plt.tight_layout()
 plt.savefig('DeltaM2/NuTotalDelM2.pdf')

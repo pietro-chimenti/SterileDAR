@@ -23,7 +23,7 @@ numberperyear = ([integrate.quad(lambda Enu: flx.Fluxvm(ct.Ljsns2,Enu,ct.Ue4_2,c
 print(r"Número total de neutrinos do múon em um ano por metro quadrado: {:e}".format(numberperyear))
 
 plt.rcParams.update({
-    "figure.figsize": [8.0,6.0],
+    "figure.figsize": [9.0,6.0],
     "figure.dpi": 72.0,
     "text.usetex": True,
     "font.family": "sans-serif",
@@ -35,10 +35,10 @@ L = ct.Ljsns2 #int(input("Digite um valor para a distância: "))
 E = np.arange(10e-15,ct.muonmass/2,0.01)
 
 plt.plot(E,flx.Fluxvm(L,E,ct.Ue4_2,ct.Umu4_2,ct.DelM2),'r',linewidth=1.0)
-plt.vlines(ct.NuMuenergy, 0, flx.nvmuvmu, colors='blue', label='\n'.join(wrap(r'{0:.2e} neutrinos do decaimento de dois corpos'.format(flx.nvmuvmu),25)))
+plt.vlines(ct.NuMuenergy, 0, flx.nvmuvmu, colors='blue', label='\n'.join(wrap(r'{0:.2e} neutrinos por ano por m$^{{2}}$ do decaimento de dois corpos'.format(flx.nvmuvmu),28)))
 plt.legend(loc='upper left')
 plt.ylim((-0.002, max(flx.Fluxvm(L,E,ct.Ue4_2,ct.Umu4_2,ct.DelM2))+6e13))
-plt.title(r'Fluxo de neutrinos do múon por energia emitidos para L={0}m'.format(L))
+plt.title(r'Fluxo de $\nu_{{\mu}}$ por energia emitidos para L={0}m em um ano'.format(L))
 plt.grid(True)
 textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
@@ -46,7 +46,7 @@ textstr = '\n'.join((
     r'$\Delta m^{{2}}$= {0}eV$^{{2}}$'.format(ct.DelM2)))
 plt.text(-1.2,0.75e14,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r'Energia dos neutrinos [MeV]')
-plt.ylabel(r' $\frac{N}{4 \pi L^{2} } \frac{dN}{dE}$ [$\nu$ MeV$^{-1}$m$^{-2}$]')
+plt.ylabel(r' $\frac{N}{4 \pi L^{2} } \frac{dN}{dE}$ [$\nu$ ano MeV$^{-1}$m$^{-2}$]')
 plt.tight_layout()
 plt.savefig('NUmuFlux{0}m.pdf'.format(L))
 #plt.show()

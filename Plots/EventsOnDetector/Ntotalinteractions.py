@@ -13,9 +13,14 @@ cc = EventsnumberCC.EventsnumberCC()
 nc = EventsnumberNC.EventsnumberNC()
 
 
-#Considering PPO/Paraffin/LAB (appearance)
+#Considering PPO/Paraffin/LAB (appearance IBD zero order)
 
 print("Número total de interações de antineutrinos do elétron em um ano (PPO/Paraffin/LAB):{0}  ".format(cc.ntotalvebar(ct.Ue4_2,ct.Umu4_2,ct.DelM2)))
+
+
+#Considering PPO/Paraffin/LAB (appearance IBD first order)
+
+print("Número total de interações de antineutrinos do elétron em um ano (PPO/Paraffin/LAB):{0}  ".format(cc.ntotalvebaribd1(ct.Ue4_2,ct.Umu4_2,ct.DelM2)))
 
 
 #Considering 208Pb (1ton) (desappearance) (charged current)
@@ -58,7 +63,8 @@ print("Número total de interações de antineutrinos do tau em um ano por corre
 fig = plt.figure(dpi=125)
 ax = fig.add_subplot(1,1,1)
 table_data=[
-    [r"$\bar{\nu}_{e}^{(IBD)}$", "{0}".format(np.round(cc.ntotalvebar(ct.Ue4_2,ct.Umu4_2,ct.DelM2), 2))],
+    [r"$\bar{\nu}_{e}^{(IBD(0))}$", "{0}".format(np.round(cc.ntotalvebar(ct.Ue4_2,ct.Umu4_2,ct.DelM2), 2))],
+    [r"$\bar{\nu}_{e}^{(IBD(1))}$", "{0}".format(np.round(cc.ntotalvebaribd1(ct.Ue4_2,ct.Umu4_2,ct.DelM2), 2))],
     [r"$\nu_{e}^{(CC)}$", "{0}".format(np.round(cc.ntotalve(ct.Ue4_2,ct.Umu4_2,ct.DelM2), 2))],
     [r"$\nu_{e}^{(NC)}$", "{0}".format(np.round(nc.ntotalveve(ct.Ue4_2,ct.Umu4_2,ct.DelM2),2))],
     [r"$\nu_{\mu}^{(NC)}$", "{0}".format(np.round(nc.ntotalvmvm(ct.Ue4_2,ct.Umu4_2,ct.DelM2),2))],

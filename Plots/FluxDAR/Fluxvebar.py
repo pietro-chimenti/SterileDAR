@@ -17,7 +17,7 @@ numberperyear = [integrate.quad(lambda Enu: flx.Fluxvebar(ct.Ljsns2,Enu,ct.Ue4_2
 print(r"Número total de antineutrinos do elétron em um ano por metro quadrado: {:e}".format(numberperyear[0][0]))
 
 plt.rcParams.update({
-    "figure.figsize": [8.5,6.0],
+    "figure.figsize": [9.0,6.0],
     "figure.dpi": 72.0,
     "text.usetex": True,
     "font.family": "sans-serif",
@@ -30,7 +30,7 @@ E = np.arange(10e-15,ct.muonmass/2,0.01)
 
 
 plt.plot(E,flx.Fluxvebar(L,E,ct.Ue4_2,ct.Umu4_2,ct.DelM2),'r',linewidth=1.5)
-plt.title(r'Fluxo de antineutrinos do elétron por energia emitidos para L={0}m'.format(L))
+plt.title(r'Fluxo de $\overline{{\nu}}_{{e}}$ por energia emitidos para L={0}m em um ano'.format(L))
 plt.grid(True)
 textstr = '\n'.join((
     r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
@@ -38,7 +38,7 @@ textstr = '\n'.join((
     r'$\Delta m^{{2}}$= {0}eV$^{{2}}$'.format(ct.DelM2)))
 plt.text(2,4.5e13,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r'Energia dos antineutrinos [MeV]')
-plt.ylabel(r' $\frac{N}{4 \pi L^{2} } \frac{dN}{dE}$ [$\nu$ MeV$^{-1}$m$^{-2}$]')
+plt.ylabel(r' $\frac{N}{4 \pi L^{2} } \frac{dN}{dE}$ [$\nu$ ano MeV$^{-1}$m$^{-2}$]')
 plt.tight_layout()
 plt.savefig('NUebarFlux{0}m.pdf'.format(L))
 #plt.show()

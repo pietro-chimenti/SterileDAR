@@ -7,9 +7,10 @@ from SterileDar import constants as ct
 from SterileDar import OscillationModel
 import numpy as np
 
-osc = Oscspec.Oscspec()
-model = OscillationModel.OscillationModel()
-cs = crosssections.crosssections()
+osc     = Oscspec.Oscspec()
+model   = OscillationModel.OscillationModel()
+cs      = crosssections.crosssections()
+csibd1  = crosssections.IBDfirstorder()
 
 nproton = float(exp.hidrogeniototal) #number of protons at the detector
 npb = float(exp.pbnumber) #number of Pb atoms at the detector
@@ -18,10 +19,14 @@ class Events:
     def __init__(self, *args, **kwargs):
         # you can add additional code here if needed
         pass
-#PPO/Paraffin/LAB (IBD process)
+#PPO/Paraffin/LAB (IBD process zero order)
     def dNdEvebar(self,E1,Ue4_2,Umu4_2,DelM2):
         return ((nproton*exp.estimatednumber)*osc.Oscspecvebar(exp.Ljsns2,E1,Ue4_2,Umu4_2,DelM2)*cs.sigmaIBD(E1))/(4*np.pi*(exp.Ljsns2)**2)
-        
+
+#PPO/Paraffin/LAB (IBD process first order)
+    def dNdEvebar1order(self,E1,Ue4_2,Umu4_2,DelM2):
+        return ((nproton*exp.estimatednumber)*osc.Oscspecvebar(exp.Ljsns2,E1,Ue4_2,Umu4_2,DelM2)*csibd1.sigmaIBDorder1(E1))/(4*np.pi*(exp.Ljsns2)**2)
+
 #208Pb
     
 #Charged current

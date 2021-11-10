@@ -72,7 +72,7 @@ def LogLikelihood(pars, data):
 def R(DelM2, S22t, data):
     bnds = ((0.1, 10), (0, 1))
     BestParams = minimize(LogLikelihood,(DelM2,S22t),args=(sample,),method='TNC', bounds=bnds, tol=1e-5).x
-    R = np.exp(-LogLikelihood((DelM2,S22t),data)/2 + LogLikelihood(BestParams,data)/2)
+    R = LogLikelihood((DelM2,S22t),data) - LogLikelihood(BestParams,data)
     return R
 
 DelM2 = 1
@@ -104,69 +104,16 @@ for i in np.arange(nsamples):
     sample = RandomSample(DelM2, S22t)
     r_vals[i] = R(DelM2,S22t,sample)
     
-plt.hist(r_vals,bins = np.arange(-0.5,1.2+0.01,0.01))
+plt.hist(r_vals,bins = 20)
 plt.show()
 
-#########################################################################################
-DelM2 = 1
-E = 2
-S22t = 0
 
-nsamples = 100
-r_vals = np.zeros(nsamples)
-for i in np.arange(nsamples):
-    sample = RandomSample(DelM2, S22t)
-    r_vals[i] = R(DelM2,S22t,sample)
-    
-plt.hist(r_vals,bins = np.arange(-0.5,1.2+0.01,0.01))
-plt.show()
-
-#########################################################################################
-DelM2 = 1
-E = 2
-S22t = 1
-
-nsamples = 100
-r_vals = np.zeros(nsamples)
-for i in np.arange(nsamples):
-    sample = RandomSample(DelM2, S22t)
-    r_vals[i] = R(DelM2,S22t,sample)
-    
-plt.hist(r_vals,bins = np.arange(-0.5,1.2+0.01,0.01))
-plt.show()
-
-#########################################################################################
-DelM2 = 0.1
-E = 2
-S22t = 1
-
-nsamples = 100
-r_vals = np.zeros(nsamples)
-for i in np.arange(nsamples):
-    sample = RandomSample(DelM2, S22t)
-    r_vals[i] = R(DelM2,S22t,sample)
-    
-plt.hist(r_vals,bins = np.arange(-0.5,1.2+0.01,0.01))
-plt.show()
-
-#########################################################################################
-DelM2 = 10
-E = 2
-S22t = 1
-
-nsamples = 100
-r_vals = np.zeros(nsamples)
-for i in np.arange(nsamples):
-    sample = RandomSample(DelM2, S22t)
-    r_vals[i] = R(DelM2,S22t,sample)
-    
-plt.hist(r_vals,bins = np.arange(-0.5,1.2+0.01,0.01))
-plt.show()
 
 
 #print(R(DelM2,S22t,sample))
 # parameter values
 # DelM2    S22t
+#  1         0.5
 #  1         0
 #  1         1
 #  0.1       1

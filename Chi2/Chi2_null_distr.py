@@ -46,7 +46,7 @@ def chi2_someconfig(Ue4, Umu4, DelM2):
         chi2 = 0.
         for i in range(len(bins) - 1 ):
             if i == 6:
-                measured[i] = rn.poisson([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0]) + evt.NMuOriginCC(ct.NuMuenergy,ct.Ue4_2,ct.Umu4_2,ct.DelM2)
+                measured[i] = rn.poisson([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0]) + evt.NMuOriginCC(ct.NuMuenergy,Ue4,Umu4,DelM2)
             else:
                 measured[i] = rn.poisson([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0])
             chi2+= ((measured[i]-no_osc[i])**2)/no_osc[i]

@@ -30,11 +30,11 @@ plt.rcParams.update({
     "font.family": "sans-serif",
     "font.size": 16,
     "font.sans-serif": ["Helvetica"]})
-plt.title(u'Seção de choque IBD')
-plt.plot(Enu,cs.sigmaIBD(Enu),'r',label='Ordem Zero')
-plt.plot(Enu, plot, 'b',label='Primeira Ordem')
+plt.title(u'Seções de choque IBD')
+plt.plot(Enu,cs.sigmaIBD(Enu),'r',label=r'Ordem Zero em $\frac{1}{M}$')
+plt.plot(Enu, plot, 'b',label=r'Primeira Ordem em $\frac{1}{M}$')
 plt.grid(True)
-plt.xlabel(r"Energia dos neutrinos [MeV]")
+plt.xlabel(r"Energia dos antineutrinos $\bar{\nu}_{e}$ [MeV]")
 plt.ylabel(r"Seção de choque [m$^{2}$]")
 plt.tight_layout()
 plt.legend(prop={'size': 15}, loc='upper left')
