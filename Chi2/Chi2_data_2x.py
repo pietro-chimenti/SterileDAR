@@ -23,7 +23,7 @@ lead_min_e = 6
 #Considering 208Pb (1ton) (desappearance)
 lista = [] #Result of each simulated experiment
 
-for experiment in range(1):
+for experiment in range(10000):
     
     bins = np.linspace(lead_min_e, ct.muonmass/2, 10+1 )
     measured     = np.zeros(len(bins) - 1)
@@ -58,7 +58,7 @@ for experiment in range(1):
 # Find minimum of Chi2 as function of Ue4
     
     def chi2_dis_ue4(Ue4):
-        return chi2_disappearence(Ue4,ct.Umu4_2,ct.DelM2)
+        return chi2_disappearence(Ue4,2*ct.Umu4_2,2*ct.DelM2)
     
     min_chi2_ue4 = optimize.minimize(chi2_dis_ue4, 0.02)
 
@@ -68,15 +68,12 @@ for experiment in range(1):
     def chi2_dis_ue4_sig(Ue4):
         return chi2_dis_ue4(Ue4)-(min_chi2_ue4.fun+3)
     
-    sol1 = optimize.fsolve(chi2_dis_ue4_sig,min_chi2_ue4.x[0]+0.0001)
-    sol2 = optimize.fsolve(chi2_dis_ue4_sig,min_chi2_ue4.x[0]-0.0001)
-    
-    lista.append([min_chi2_ue4.x[0],min_chi2_ue4.fun,sol2[0],sol1[0],chi2_dis_ue4(sol2[0]),chi2_dis_ue4(sol1[0])])
+    lista.append([min_chi2_ue4.x[0],min_chi2_ue4.fun])
     print("{0} - {1} minutes ---".format(experiment,((time.time() - start_time)/60)))
 
-df=pd.DataFrame(lista,columns=["Ue4^2","Chi2","Confiança Inferior","Confiança Superior", "Chi2(Inferior)", "Chi2(Superior)" ])
+df=pd.DataFrame(lista,columns=["Ue4^2","Chi2"])
 # =============================================================================
-# df.to_csv("data1.csv", index=False)
+df.to_csv("data10k2x.csv", index=False)
 # =============================================================================
 print(df)
 

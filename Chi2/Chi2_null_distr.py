@@ -10,10 +10,12 @@ import scipy.integrate as integrate
 from numpy import  random as rn
 import itertools as itt
 from SterileDar import EventsnumberCC
+import pandas as pd
 
 evcc = EventsnumberCC.EventsnumberCC()
 evt = InteractionSpectrum.Events()
 int_err = 0.01
+
 
 # Energies for plotting
 EnuPb = np.arange(ct.lead_min_e,ct.muonmass/2,.2)                   # for Lead
@@ -28,9 +30,14 @@ ntotalve_noosc = [evcc.ntotalve(0,0,0)]
 print("Configuração: Ue4={0}, Umu4={1} DelM2={2}".format(0,0,0))
 print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
 
+
+################################### BINS DEFINITION #######################################
+
 bins = np.arange(ct.lead_min_e, ct.muonmass/2 + 0.01, (ct.muonmass/2 - ct.lead_min_e)/10 )
 measured = np.zeros(len(bins) - 1)
 no_osc   = np.zeros(len(bins) - 1)
+
+################################# DATA WITHOUT OSCILLATION ################################
 
 for i in range(len(bins) - 1):
     if i == 6:
@@ -38,6 +45,8 @@ for i in range(len(bins) - 1):
     else:
         no_osc[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), bins[i], bins[i+1], epsabs=int_err)][0][0]
   
+
+################################## CHI2 DEFINITION ########################################
 
 def chi2_someconfig(Ue4, Umu4, DelM2):
     """ Esta função gera valores de chi2 utilizando um gerador de numeros aleatórios """
@@ -52,15 +61,40 @@ def chi2_someconfig(Ue4, Umu4, DelM2):
             chi2+= ((measured[i]-no_osc[i])**2)/no_osc[i]
         yield chi2
 
-chi2_gen = chi2_someconfig(0, 0, ct.DelM2)
 
-chi2_values = [ next(chi2_gen) for i in range(1000)]
+######################################## CHI2 CALCULATION ###################################
 
-plt.hist(chi2_values, bins = 50, density=True, label='simulado', color='midnightblue', histtype='stepfilled',alpha=0.4, ec="k")
+# =============================================================================
+# chi2_gen = chi2_someconfig(ct.Ue4_2, ct.Umu4_2, ct.DelM2)
+# 
+# chi2_values = [ next(chi2_gen) for i in range(10000)]
+# 
+# chi2dflist = {'Chi2':chi2_values}
+# chi2df = pd.DataFrame(chi2dflist)
+# chi2df.to_csv("10kchi2osctonoosc.csv", index=False)
+# =============================================================================
+
+############################################# PLOT ##########################################
+
+chi2df = pd.read_csv("10kchi2osctonoosc.csv")
+
+plt.rcParams.update({
+    "figure.figsize": [9.0,6.0],
+    "figure.dpi": 72.0,
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"],
+    "font.size": 16,
+    "axes.titlepad": 25})
+
+
+
+plt.hist(chi2df['Chi2'], bins = 250, density=True, label='Dados Simulados', color='midnightblue', histtype='stepfilled',alpha=0.4, ec="k")
 plt.title(r'Comparação da distribuição de $\chi^{2}$ teórica com a calculada')
 plt.xlabel(r'Número de graus de liberdade')
 plt.ylabel(r'$\chi^2$')
 x_chi2 = np.linspace(0,100,101)
-plt.plot(x_chi2 ,chi2.pdf(x_chi2,10), label='Teórico', color='r')
+plt.plot(x_chi2 ,chi2.pdf(x_chi2,18), label='Teórico', color='r')
 plt.legend(prop={'size': 15})
+plt.savefig('Chi2distribution.pdf')
 plt.show()

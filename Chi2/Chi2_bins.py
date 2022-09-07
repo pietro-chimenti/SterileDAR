@@ -8,6 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 import matplotlib.font_manager
+from textwrap3 import wrap
+from scipy.stats import chi2
 
 np.random.seed(20210507)
 
@@ -28,7 +30,7 @@ ntotalve_noosc = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,0,0), lead_min_e,
 print(r"Configuração: Ue4={0}, DelM2={1}".format(0,0))
 print(r"Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
 
-bins     = np.linspace(lead_min_e, ct.muonmass/2, 10 )
+bins     = np.linspace(lead_min_e, ct.muonmass/2, 10+1 )
 measured = np.zeros(len(bins) - 1)
 no_osc   = np.zeros(len(bins) - 1)
 osc      = np.zeros(len(bins) - 1)
@@ -70,7 +72,10 @@ def chi2_someconfig(Ue4, DelM2):
     """
     chi2 = 0.
     for i in range(len(bins) - 1 ):
-        measured[i] = [integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0]
+        if i == 5:
+            measured[i] = ([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0] + evt.NMuOriginCC(ct.NuMuenergy,Ue4,ct.Umu4_2,DelM2))
+        else:
+            measured[i] = ([integrate.quad(lambda Enu1: evt.dNdEvee(Enu1,Ue4,DelM2), bins[i], bins[i+1], epsabs=int_err)][0][0])
         chi2+= ((measured[i] - no_osc[i])**2)/measured[i]
     return chi2
 
@@ -89,48 +94,65 @@ plt.rcParams.update({
     "axes.titlepad": 25})
 
 
-plt.hist(bins[:-1], bins, weights=integral_noosc, color='salmon', label='no osc' )
-plt.plot((bins[1:]+bins[:-1])/2,samples_noosc,"*", color='red', label='no osc sample')
-plt.hist(bins[:-1], bins, weights=integral_osc, color='skyblue', label='best fit' )
-plt.plot((bins[1:]+bins[:-1])/2,samples_osc,"*", color='blue', label='osc sample')
-plt.title(r'Histograma do número esperado de interações $\nu_{e}$ com $^{208}$Pb')
+
+plt.hist(bins[:-1], bins, weights=integral_noosc, color='salmon', label='Sem oscilação' )
+plt.plot((bins[1:]+bins[:-1])/2,samples_noosc,"*", color='red', label='Amostra sem oscilação')
+plt.hist(bins[:-1], bins, weights=integral_osc, color='skyblue', label='Com oscilação' )
+plt.plot((bins[1:]+bins[:-1])/2,samples_osc,"*", color='blue', label='Amostra com oscilação')
+plt.title(r'Histograma do número esperado de interações $\nu^{CC}_{e}$ com $^{208}$Pb')
+textstr = '\n'.join((
+    r'$|U_{{e4}}|^{{2}}$= {0}'.format(ct.Ue4_2),
+    r'$|U_{{\mu 4}}|^{{2}}$= {0}'.format(ct.Umu4_2),
+    r'$\Delta m^{{2}}$= {0}eV$^{{2}}$'.format(ct.DelM2)))
+plt.text(4.2,270,textstr, fontsize = 16, bbox = dict(facecolor = 'white', alpha = 1))
 plt.xlabel(r'Energia [MeV]')
 plt.ylabel(r'Número Esperado de Interações')
 plt.legend(loc=2, shadow=True)
 plt.savefig('NUebins208Pb.pdf')
-#plt.show()
+plt.show()
+plt.close()
 
 
 
 ######################################### PLOT CHI2 ############################################
 
-# =============================================================================
-# delta1 = 0.02
-# delta2 = 0.02
-# log_delm2    = np.arange(-1, 1., delta1)
-# log_sin22t   = np.arange(-2, 0., delta2)
-# delm2  = 10**log_delm2
-# sin22t = 10**log_sin22t
-# 
-# X, Y = np.meshgrid(delm2, sin22t)
-# ue4_2    = (1.-np.sqrt(1-Y))/2.
-# 
-# Z = vchi2_someconfig(ue4_2,X)
-# 
-# 
-# 
-# 
-# fig, ax = plt.subplots()
-# ax.set_xscale("log") 
-# ax.set_yscale("log") 
-# CS = ax.contour(Y, X, Z, levels = [1.,9.,25.] )
-# ax.clabel(CS, inline=1, fontsize=10)
-# ax.set_title(r'Sensitivity plot $\nu_e$ disappearence - Chi$^2$')
-# ax.set_xlabel(r'$sin^2 2\theta$')
-# ax.set_ylabel(r'$\Delta m^2$')
-# ax.scatter( (4*0.019*(1-0.019))  , 1.7 , c="red")
-# plt.grid(True)
-# plt.xlim([0.01,1])
-# plt.ylim([0.1,10])
-# plt.show()
-# =============================================================================
+
+chi21sigma = chi2.ppf(0.6827, df=9)
+chi22sigma = chi2.ppf(0.9545, df=9)
+chi23sigma = chi2.ppf(0.9973, df=9)
+
+
+delta1 = 0.02
+delta2 = 0.02
+log_delm2    = np.arange(-1, 1., delta1)
+log_sin22t   = np.arange(-2, 0., delta2)
+delm2  = 10**log_delm2
+sin22t = 10**log_sin22t
+
+X, Y = np.meshgrid(delm2, sin22t)
+ue4_2    = (1.-np.sqrt(1-Y))/2.
+
+Z = vchi2_someconfig(ue4_2,X)
+
+
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"]})
+
+fig, ax = plt.subplots()
+ax.set_aspect(1)
+ax.set_xscale("log") 
+ax.set_yscale("log")
+CS = ax.contour(Y, X, Z, levels = [chi21sigma,chi22sigma,chi23sigma] )
+ax.clabel(CS, inline=1, fontsize=10)
+ax.set_title(r'Plot de Sensibilidade $\nu_{e}^{CC}$ - $\chi^2$')
+ax.set_xlabel(r'$sen^2 2\theta$')
+ax.set_ylabel(r'$\Delta m^2$')
+ax.scatter( (4*0.019*(1-0.019))  , 1.7 , c="red")
+plt.grid(True)
+plt.xlim([0.01,1])
+plt.ylim([0.1,10])
+plt.savefig('sensitivityNUedisappearencebins.pdf')
+plt.show()
+

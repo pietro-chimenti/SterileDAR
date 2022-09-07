@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import scipy.stats as st
 
 confidence = (float(input("Insira a confiança de 0 a 100:  ")))/100
-measured   = 1#np.random.normal() (float(input("Insira o valor medido:  ")))
+measured   = 0.02#np.random.normal() (float(input("Insira o valor medido:  ")))
 mean       = measured
 sigma = 1
 
@@ -38,7 +38,7 @@ one_x12, one_y12 = [ci[0],ci[0]], [0, st.norm.pdf(ci[0],loc=measured,scale=sigma
 two_x12, two_y12 = [ci[1],ci[1]], [0, st.norm.pdf(ci[1],loc=measured,scale=sigma)]
 plt.plot(one_x12, one_y12, two_x12, two_y12, color='r')
 # measured point
-plt.plot(measured,0,'ro') 
+plt.plot(measured,0,'ro')
 plt.show()
 
 #Plot2
@@ -67,5 +67,5 @@ plt.xlabel(r'Medida de x')
 plt.ylabel(r'Média $\mu$')
 
 plt.title(r'Intervalo de Confiança Gaussiano Clássico')
-plt.savefig('cigaussian.pdf')
+#plt.savefig('cigaussian.pdf')
 plt.show()

@@ -16,14 +16,18 @@ int_err = 0.01
 EnuPb = np.arange(ct.lead_min_e,ct.muonmass/2,.2)                  # for Lead
 
 #Considering 208Pb (1ton) (desappearance)
+################################## OSCILLATED DATA ##############################################
 ntotalve_osc_bf = evcc.ntotalve(ct.Ue4_2,ct.Umu4_2,ct.DelM2)
 print("Configuração: Ue4={0}, Umu4={1}, DelM2={2}".format(ct.Ue4_2,ct.Umu4_2,ct.DelM2))
 print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_osc_bf))
 
+############################# DATA WITHOUT OSCILLATION ##########################################
 ntotalve_noosc = evcc.ntotalve(0,0,0)
 print("Configuração: Ue4={0}, Umu4={1}, DelM2={2}".format(0,0,0))
 print("Número total de interações de neutrinos do elétron em um ano:{0}".format(ntotalve_noosc))
 
+
+################################### CHI2 DEFINITION #############################################
 def chi2_someconfig(Ue4_2, Umu4_2, DelM2):
     """ Esta função bla bla bla
     """
@@ -36,7 +40,7 @@ vchi2_someconfig = np.vectorize(chi2_someconfig)
 print("Chi2({0},{1},{2})={3}".format(0,0,0,chi2_someconfig(0,0,0)))
 print("Chi2({0},{1},{2})={3}".format(ct.Ue4_2,ct.Umu4_2,ct.DelM2,chi2_someconfig(ct.Ue4_2,ct.Umu4_2,ct.DelM2)))
 
-# Now plotting
+#################################### PLOT #######################################################
 delta1 = 0.02
 delta2 = 0.02
 log_delm2    = np.arange(-1, 1., delta1)
@@ -60,7 +64,7 @@ ax.set_xscale("log")
 ax.set_yscale("log") 
 CS = ax.contour(Y, X, Z, levels = [1.,9.,25.] )
 ax.clabel(CS, inline=1, fontsize=10)
-ax.set_title(r'Sensitivity plot $\nu_e$ disappearence - Chi$^2$')
+ax.set_title(r'Plot de Sensibilidade $\nu_{e}^{CC}$ - $\chi^2$')
 ax.set_xlabel(r'$sin^2 2\theta$')
 ax.set_ylabel(r'$\Delta m^2$')
 ax.scatter( (4*0.019*(1-0.019))  , 1.7 , c="red")
